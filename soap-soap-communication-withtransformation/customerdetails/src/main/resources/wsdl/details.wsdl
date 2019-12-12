@@ -1,0 +1,70 @@
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="http://www.maximus.com/customerdetails/details"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.maximus.com/customerdetails/details"
+	targetNamespace="http://www.maximus.com/customerdetails/details">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified"
+			targetNamespace="http://www.maximus.com/customerdetails/details">
+			<xsd:element name="CustomerDetailsRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="customerName" type="xsd:string" />
+						<xsd:element name="age" type="xsd:int" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="CustomerDetailsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="company" type="xsd:string" />
+						<xsd:element name="employeeId" type="xsd:long" />
+						<xsd:element name="experience" type="xsd:long" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="CustomerDetailsRequest">
+		<wsdl:part element="tns:CustomerDetailsRequest"
+			name="CustomerDetailsRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="CustomerDetailsResponse">
+		<wsdl:part element="tns:CustomerDetailsResponse"
+			name="CustomerDetailsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="CustomerDetailsindicator">
+		<wsdl:operation name="CustomerDetails">
+			<wsdl:input message="tns:CustomerDetailsRequest"
+				name="CustomerDetailsRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:CustomerDetailsResponse"
+				name="CustomerDetailsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="CustomerDetailsindicatorSoap11"
+		type="tns:CustomerDetailsindicator">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="CustomerDetails">
+			<soap:operation soapAction="" />
+			<wsdl:input name="CustomerDetailsRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CustomerDetailsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="CustomerDetailsindicatorService">
+		<wsdl:port binding="tns:CustomerDetailsindicatorSoap11"
+			name="CustomerDetailsindicatorSoap11">
+			<soap:address location="http://localhost:9090/ws" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

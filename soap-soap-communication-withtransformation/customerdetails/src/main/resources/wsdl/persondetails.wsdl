@@ -1,0 +1,71 @@
+<wsdl:definitions
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:sch="http://www.maximus.com/xmltransformer/person"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.maximus.com/xmltransformer/person"
+	targetNamespace="http://www.maximus.com/xmltransformer/person">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			elementFormDefault="qualified"
+			targetNamespace="http://www.maximus.com/xmltransformer/person">
+			<xsd:element name="PersonDetailsRequest">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="1" name="name"
+							type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="PersonDetailsResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element minOccurs="0" name="firstName"
+							type="xsd:string" />
+						<xsd:element minOccurs="0" name="lastName"
+							type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="PersonDetailsResponse">
+		<wsdl:part element="tns:PersonDetailsResponse"
+			name="PersonDetailsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="PersonDetailsRequest">
+		<wsdl:part element="tns:PersonDetailsRequest"
+			name="PersonDetailsRequest">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="PersonDetailsindicator">
+		<wsdl:operation name="PersonDetails">
+			<wsdl:input message="tns:PersonDetailsRequest"
+				name="PersonDetailsRequest">
+			</wsdl:input>
+			<wsdl:output message="tns:PersonDetailsResponse"
+				name="PersonDetailsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="PersonDetailsindicatorSoap11"
+		type="tns:PersonDetailsindicator">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="PersonDetails">
+			<soap:operation soapAction="" />
+			<wsdl:input name="PersonDetailsRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="PersonDetailsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="PersonDetailsindicatorService">
+		<wsdl:port binding="tns:PersonDetailsindicatorSoap11"
+			name="PersonDetailsindicatorSoap11">
+			<soap:address location="http://localhost:9090/ws" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
