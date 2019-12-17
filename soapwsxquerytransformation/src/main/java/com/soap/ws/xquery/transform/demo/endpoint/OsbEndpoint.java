@@ -21,6 +21,8 @@ public class OsbEndpoint {
 	@ResponsePayload
 	public ViewAccountDataResponse processOsbRequest(@RequestPayload ViewAccountData request,
 			MessageContext mc) throws Exception {
+		
+		try {
 
 		boolean writeStatus = false;
 		String transformedXmlData = null;
@@ -32,7 +34,7 @@ public class OsbEndpoint {
 
 		if (writeStatus) {
 			// Execute XQuery against the XML
-			transformedXmlData = transformService.executeTransformation();
+			//transformedXmlData = transformService.executeTransformation();
 		} else {
 			System.out.println("Write Request xml was not successful, hence skipped Transformation");
 		}
@@ -50,6 +52,10 @@ public class OsbEndpoint {
 			System.out.println("Call Soap Web Service 2 with the transformed xml data from file system");
 
 		} 
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 		ViewAccountDataResponse response = new ViewAccountDataResponse();
 		return response;
 	}

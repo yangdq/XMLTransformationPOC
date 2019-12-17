@@ -26,7 +26,7 @@ public class TransformationService {
 		try {
 			OutputStream outputStream;
 
-			outputStream = new FileOutputStream("C:\\Sid\\codebase\\files\\ViewAccountDataInput.xml");
+			outputStream = new FileOutputStream("ViewAccountDataInput.xml");
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
 
 			WebServiceMessage wsm = mc.getRequest();
@@ -45,7 +45,7 @@ public class TransformationService {
 		try {
 			OutputStream outputStream;
 
-			outputStream = new FileOutputStream("C:\\Sid\\codebase\\files\\ViewAccountDataTransformedInput.xml");
+			outputStream = new FileOutputStream("ViewAccountDataTransformedInput.xml");
 			OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
 
 			outputStreamWriter.write(xmlData);
@@ -61,11 +61,11 @@ public class TransformationService {
 	public String executeTransformation() {
 		String transformedXmlString = null;
 		try {
-			InputStream inputStream = new FileInputStream(new File("C:/Sid/codebase/files/ViewAccountDataTrx.xq"));
+			InputStream inputStream = new FileInputStream(new File("ViewAccountDataTrx.xq"));
 			SaxonXQDataSource ds = new SaxonXQDataSource();
 			SaxonXQConnection conn = (SaxonXQConnection) ds.getConnection();
 			SaxonXQPreparedExpression exp = (SaxonXQPreparedExpression) conn.prepareExpression(inputStream);
-			exp.bindString(new QName("labelLinkUri"), "file:///C:/Sid/codebase/files/ViewAccountDataInput.xml", null);
+			exp.bindString(new QName("labelLinkUri"), "file:ViewAccountDataInput.xml", null);
 
 			SaxonXQForwardSequence result = (SaxonXQForwardSequence) exp.executeQuery();
 
