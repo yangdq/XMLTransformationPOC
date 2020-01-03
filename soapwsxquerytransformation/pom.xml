@@ -76,9 +76,9 @@
 			</plugin>
 
 			<plugin> 
-			    <groupId>org.jvnet.jaxb2.maven2</groupId> 
-			    <artifactId>maven-jaxb2-plugin</artifactId> 
-			    <version>0.8.1</version> 
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.13.2</version>
 			    <executions> 
 			     <execution> 
 			      <phase>generate-sources</phase> 
@@ -97,7 +97,7 @@
 			     <schemaIncludes> 
 			      <schemaInclude>transform-details.xsd</schemaInclude> 
 			     </schemaIncludes> 
-			     <outputDirectory>src/main/java</outputDirectory>
+				 <generateDirectory>${project.basedir}/src/main/java</generateDirectory>
 			     <bindingDirectory>src/main/resources/</bindingDirectory> 
 			     <bindingIncludes> 
 			      <include>*.xjb</include> 
