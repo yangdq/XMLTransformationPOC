@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings 
+    version="2.1" 
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:annox="http://annox.dev.java.net" >
+  
+    <jaxb:bindings schemaLocation="LetterManagerWSSchema.xsd" node="/xs:schema">
+	    <jaxb:bindings node="xs:complexType[@name='insertLetterPDFLinksResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="insertLetterPDFLinksResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='insertLetterPDFLinks']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="insertLetterPDFLinks"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 	      	    	    	        
+    </jaxb:bindings>
+    
+</jaxb:bindings>

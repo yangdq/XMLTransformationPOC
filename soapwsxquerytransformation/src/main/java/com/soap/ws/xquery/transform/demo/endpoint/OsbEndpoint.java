@@ -1,5 +1,10 @@
 package com.soap.ws.xquery.transform.demo.endpoint;
 
+import java.io.File;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -7,56 +12,38 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
-import com.flhk.webservice.flhkwebservice._1.ViewAccountData;
-import com.flhk.webservice.flhkwebservice._1.ViewAccountDataResponse;
-import com.soap.ws.xquery.transform.demo.resource.TransformationService;
+import com.soap.ws.xquery.transform.demo.resource.FileService;
+import com.soap.ws.xquery.transform.demo.resource.VidaService;
+import com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks;
+import com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinksResponse;
 
 @Endpoint
 public class OsbEndpoint {
 
+//	@Autowired
+//	TransformationService transformService;
+
 	@Autowired
-	TransformationService transformService;
+	FileService fileService;
 
-	@PayloadRoot(namespace = "http://webservice.flhk.com/FLHKWebService/1.0", localPart = "viewAccountData")
+	@Autowired
+	VidaService vidaService;
+
+	@PayloadRoot(namespace = "http://webservice.flhk.com/FLHKWebService/1.0", localPart = "insertLetterPDFLinks")
 	@ResponsePayload
-	public ViewAccountDataResponse processOsbRequest(@RequestPayload ViewAccountData request,
-			MessageContext mc) throws Exception {
-		
-		try {
+	public InsertLetterPDFLinksResponse processOsbRequest(
+			@RequestPayload InsertLetterPDFLinks insertLetterPdfLinksOsbRequest, MessageContext mc)
+			throws Exception {
 
-		boolean writeStatus = false;
-		String transformedXmlData = null;
-		boolean writeTransformedXmlStatus = false;
-		
-		// Write Request XML to file system
-		writeStatus = transformService.writeRequest(mc);
-		System.out.println("Status of Write Request xml to file system: " + writeStatus);
+		InsertLetterPDFLinksResponse response = null;
+		JAXBContext jaxbContext = JAXBContext.newInstance(InsertLetterPDFLinks.class);
+		Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+		jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-		if (writeStatus) {
-			// Execute XQuery against the XML
-			//transformedXmlData = transformService.executeTransformation();
-		} else {
-			System.out.println("Write Request xml was not successful, hence skipped Transformation");
-		}
+		File inputXmlFile = new File("data/InsertLetterPDFLinksRequestInput.xml");
+		jaxbMarshaller.marshal(insertLetterPdfLinksOsbRequest, inputXmlFile);
 
-		if (transformedXmlData != null) {
-			System.out.println("XML Transformation successful, begin to write the Transformed XML to file system");
-			writeTransformedXmlStatus = transformService.writeTransformedXmlData(transformedXmlData);
-			System.out.println("Status of Write Transformed xml to file system: " + writeTransformedXmlStatus);
-		} else {
-			System.out.println("Status of Write Transformed xml to file system: " + writeTransformedXmlStatus);
-		}
-		
-		if (writeTransformedXmlStatus) {
-			// bind the transformed XML to another Message and then fire the call to soap service2
-			System.out.println("Call Soap Web Service 2 with the transformed xml data from file system");
-
-		} 
-		}catch(Exception e) {
-			e.printStackTrace();
-			throw e;
-		}
-		ViewAccountDataResponse response = new ViewAccountDataResponse();
+		response = vidaService.callVidaEndPoint(insertLetterPdfLinksOsbRequest);
 		return response;
 	}
 
