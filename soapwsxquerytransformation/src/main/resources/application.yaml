@@ -1,0 +1,14 @@
+server:
+  port: 8090
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+
+xslt:
+  request: pdfLinkRequest.xslt
+  response: pdfLinkResponse.xslt
+
+vida:
+  letterWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/LettersManagement/LetterManagerWSService
