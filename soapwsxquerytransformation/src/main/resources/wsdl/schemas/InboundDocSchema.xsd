@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by XMLSpy 2013 Professional Ed., Installed for 2 users (with 
+  SMP from 2012-12-20 to 2013-12-21) (MAXIMUS) -->
+<!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.6hudson-86 svn-revision#12773. -->
+<xsd:schema xmlns:ns0="http://services.vida.psi.com/InboundDocument/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.vida.psi.com/InboundDocument/1.0">
+	<xsd:complexType name="inboundDocument">
+		<xsd:sequence>
+			<xsd:element name="batchNumber" type="ns0:identifier">
+				<xsd:annotation>
+					<xsd:documentation>Document batch number.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="ecn" type="ns0:identifier">
+				<xsd:annotation>
+					<xsd:documentation>Envelope Control Number. Source envelope id.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="dcn" type="ns0:identifier">
+				<xsd:annotation>
+					<xsd:documentation>Document Control Number. Source document id.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="documentType" type="ns0:inboundDocumentTypeEnum">
+				<xsd:annotation>
+					<xsd:documentation>Document Type</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="mediaSource" type="ns0:inboundDocumentSourceEnum">
+				<xsd:annotation>
+					<xsd:documentation>Media source of how the document originated .</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="accountNumber" type="xsd:long" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Account number of the targeted account</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="webConfirmationId" type="ns0:webConfirmationId" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Confirmation id reference assigned by the website and annotated on the image
+          </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="receiveDate" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>Timestamp of when the document was received in the mail room</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="scanDate" type="xsd:dateTime">
+				<xsd:annotation>
+					<xsd:documentation>Timestamp of when the document was scanned in the mail room</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="unreadable" type="xsd:boolean" default="false" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Signifies if the document is unreadable. If set by the source, another copy of the image is
+            not available.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="missingPages" type="xsd:boolean" default="false" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Signifies if the document has missing pages.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="alreadyWorked" type="xsd:boolean" default="false" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Set to true if handling of the document has already occurred and Work Request creation and
+            alike has to be skipped downstream of DCU.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="hasForwardingAddress" type="xsd:boolean" default="false" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Set to true if the returned mail document also has a forwarding address.
+          </xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="envelopeHasRenewalDocument" type="xsd:boolean" default="false" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Set to true if the envelope contained a renewal document.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="envelopeHasApplicationDocument" type="xsd:boolean" default="false" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Set to true if the envelope contained an application document.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="letterId" type="xsd:long" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>If the document represents a scanned-in letter that was mailed to the family, this field
+            will be populated from the barcode and allow the system to identify the letter.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="paymentAmount" type="xsd:decimal" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Payment amount if the document is of 'financial' type</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="checkNumber" type="ns0:identifier" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>Check number if the document was of 'check' type</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="imageLocation" type="xsd:string">
+				<xsd:annotation>
+					<xsd:documentation>URL or file location of the image binary.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="imageFormat" type="ns0:imageFormat">
+				<xsd:annotation>
+					<xsd:documentation>Format of the image binary.</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+		    <xsd:element name="webEnvNumber" type="xsd:string" minOccurs="0" />
+		    <xsd:element name="imageRefId" type="xsd:string" minOccurs="0" />
+		    <xsd:element name="webUploadDate" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="identifier">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="24"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="webConfirmationId">
+		<xsd:restriction base="xsd:string">
+			<xsd:maxLength value="20"/>
+			<xsd:minLength value="1"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="document" type="ns0:inboundDocument"/>
+	<xsd:simpleType name="inboundDocumentTypeEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="ADDRESS_CHANGE"/>
+			<xsd:enumeration value="CITIZENSHIP_IDENTITY_DOC"/>
+			<xsd:enumeration value="COMPANY_LETTER"/>
+			<xsd:enumeration value="CUSTODY_DOCUMENT"/>
+			<xsd:enumeration value="DISPUTE"/>
+			<xsd:enumeration value="EMAIL_QUESTION"/>
+			<xsd:enumeration value="ENVELOPE"/>
+			<xsd:enumeration value="F04_LETTER_RESPONSE"/>
+			<xsd:enumeration value="F13_AUTHORIZATION"/>
+			<xsd:enumeration value="F24_RENEWAL"/>
+			<xsd:enumeration value="FAX_COVER_SHEET"/>
+			<xsd:enumeration value="FHK_LETTERS_NO_WRITING"/>
+			<xsd:enumeration value="FSEMP_SELF_EMPLOYMENT_FORM"/>
+			<xsd:enumeration value="INCOME_DECLARATION_DOCUMENT"/>
+			<xsd:enumeration value="INSURANCE_DOCUMENT"/>
+			<xsd:enumeration value="LEGAL_DOCUMENT"/>
+			<xsd:enumeration value="NEW_APPLICATION"/>
+			<xsd:enumeration value="OTHER"/>
+			<xsd:enumeration value="PARENT_MEDICAL_CLAIMS"/>
+			<xsd:enumeration value="PARENT_REQUEST"/>
+			<xsd:enumeration value="PAY_STUB"/>
+			<xsd:enumeration value="PREMIUM_PAYMENT"/>
+			<xsd:enumeration value="RETURNED_MAIL"/>
+			<xsd:enumeration value="TAX_RETURN"/>
+			<xsd:enumeration value="TRIBAL_DOCUMENT"/>
+			<xsd:enumeration value="UNEARNED_INCOME"/>
+			<xsd:enumeration value="W_2_1099_1042S_FORMS"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="imageFormat">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="PDF"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:simpleType name="inboundDocumentSourceEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="MAIL"/>
+			<xsd:enumeration value="FAX"/>
+			<xsd:enumeration value="EMAIL"/>
+			<xsd:enumeration value="WEB"/>
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

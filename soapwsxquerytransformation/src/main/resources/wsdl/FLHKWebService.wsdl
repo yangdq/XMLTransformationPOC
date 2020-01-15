@@ -1,0 +1,172 @@
+<wsdl:definitions name="FLHKWebService"
+	targetNamespace="http://webservice.flhk.com/FLHKWebService/1.0"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservice.flhk.com/FLHKWebService/1.0"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata">
+	<wsdl:types>
+		<xsd:schema>
+			<xsd:import namespace="http://webservice.flhk.com/FLHKWebService/1.0" schemaLocation="../FLHKWebServiceSchema.xsd" />
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="submitApplication">
+		<wsdl:part element="tns:submitApplication" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="submitApplicationResponse">
+		<wsdl:part element="tns:submitApplicationResponse" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="isAliveRequest">
+		<wsdl:part name="parameters" element="tns:isAlive" />
+	</wsdl:message>
+	<wsdl:message name="isAliveResponse">
+		<wsdl:part name="parameters" element="tns:isAliveResponse" />
+	</wsdl:message>
+	<wsdl:message name="authenticateAccountRequest">
+		<wsdl:part name="parameters" element="tns:authenticateAccount"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="authenticateAccountResponse">
+		<wsdl:part name="parameters" element="tns:authenticateAccountResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="viewAccountDataRequest">
+		<wsdl:part name="parameters" element="tns:viewAccountData"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="viewAccountDataResponse">
+		<wsdl:part name="parameters" element="tns:viewAccountDataResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="submitRenewal">
+		<wsdl:part name="parameters" element="tns:submitRenewal"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="submitRenewalResponse">
+		<wsdl:part name="parameters" element="tns:submitRenewalResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="viewRenewalRequest">
+		<wsdl:part name="parameters" element="tns:viewRenewal"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="viewRenewalResponse">
+		<wsdl:part name="parameters" element="tns:viewRenewalResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateAccountDataRequest">
+		<wsdl:part name="parameters" element="tns:updateAccountData"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="updateAccountDataResponse">
+		<wsdl:part name="parameters" element="tns:updateAccountDataResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="FLHKWebService">
+		<wsdl:operation name="IsAlive">
+			<wsdl:documentation>This operation is used to verify connectivity all
+				the way down to persistence store</wsdl:documentation>
+			<wsdl:input message="tns:isAliveRequest" />
+			<wsdl:output message="tns:isAliveResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="SubmitApplication">
+			<wsdl:documentation>This operation is used to submit a new
+				application.</wsdl:documentation>
+			<wsdl:input message="tns:submitApplication" />
+			<wsdl:output message="tns:submitApplicationResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="AuthenticateAccount">
+			<wsdl:documentation>This operation is used to authenticate against
+				one of the family accounts</wsdl:documentation>
+			<wsdl:input message="tns:authenticateAccountRequest"></wsdl:input>
+			<wsdl:output message="tns:authenticateAccountResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ViewAccountData">
+			<wsdl:input message="tns:viewAccountDataRequest"></wsdl:input>
+			<wsdl:output message="tns:viewAccountDataResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SubmitRenewal">
+			<wsdl:input message="tns:submitRenewal"></wsdl:input>
+			<wsdl:output message="tns:submitRenewalResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ViewRenewal">
+			<wsdl:input message="tns:viewRenewalRequest"></wsdl:input>
+			<wsdl:output message="tns:viewRenewalResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateAccountData">
+			<wsdl:input message="tns:updateAccountDataRequest"></wsdl:input>
+			<wsdl:output message="tns:updateAccountDataResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="FLHKWebServiceSOAP" type="tns:FLHKWebService">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="SubmitApplication">
+			<soap:operation
+				soapAction="http://webservice.flhk.com/FLHKWebService/1.0/SubmitApplication" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="AuthenticateAccount">
+			<soap:operation
+				soapAction="http://webservice.flhk.com/FLHKWebService/1.0/AuthenticateAccount" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ViewAccountData">
+			<soap:operation
+				soapAction="http://webservice.flhk.com/FLHKWebService/1.0/ViewAccountData" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="UpdateAccountData">
+			<soap:operation
+				soapAction="http://webservice.flhk.com/FLHKWebService/1.0/UpdateAccountData" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="IsAlive">
+			<soap:operation
+				soapAction="http://webservice.flhk.com/FLHKWebService/1.0/IsAlive" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="SubmitRenewal">
+			<soap:operation
+				soapAction="http://webservice.flhk.com/FLHKWebService/1.0/SubmitRenewal" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="ViewRenewal">
+			<soap:operation
+				soapAction="http://webservice.flhk.com/FLHKWebService/1.0/ViewRenewal" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>		
+	</wsdl:binding>
+	<wsdl:service name="FLHKWebService">
+		<wsdl:port name="FLHKWebServiceSOAP" binding="tns:FLHKWebServiceSOAP">
+			<wsdl:documentation>This Web Service includes operations enabling
+				submission of applications, and management of client account and
+				enrollment information. </wsdl:documentation>
+			<soap:address location="http://webservice.flhk.com/1.0/" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

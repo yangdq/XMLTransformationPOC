@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:svc="http://webservice.flhk.com/Service/1.0" 
+	targetNamespace="http://webservice.flhk.com/Service/1.0" 
+	elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:element name="serviceReply" type="svc:serviceReply"></xsd:element>
+	<xsd:complexType name="serviceReply">
+		<xsd:sequence>
+			<xsd:element name="reply" type="svc:serviceReplyEnum"/>
+			<xsd:element name="message" type="xsd:string" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:simpleType name="serviceReplyEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="SUCCESS"/>
+			<xsd:enumeration value="FAILURE"/>
+		</xsd:restriction>
+	</xsd:simpleType>	
+</xsd:schema>

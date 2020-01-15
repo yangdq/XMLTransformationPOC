@@ -11,7 +11,8 @@ import org.springframework.stereotype.Service;
 
 import com.psi.vida.logging.ws.services.LogMessage;
 import com.psi.vida.logging.ws.services.LogMessageResponse;
-import com.psi.vida.services.lettermanagement._1.Confirmation;
+import com.psi.vida.services.documentservices._1.DocumentArrived;
+import com.psi.vida.services.documentservices._1.DocumentArrivedResponse;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinksResponse;
 import com.soap.ws.xquery.transform.demo.SOAPConnector;
@@ -27,6 +28,9 @@ public class VidaService {
     
     @Value("${vida.loggerWSServiceEndpoint}")
     private String loggerWSServiceEndpoint;
+    
+    @Value("${vida.documentWSServiceEndpoint}")
+    private String documentWSServiceEndpoint;
 
 	public InsertLetterPDFLinksResponse callVidaPDFLinksEndPoint(InsertLetterPDFLinks insertLetterPdfLinksVidaRequest) throws XmlMappingException, IOException, JAXBException {
 
@@ -38,6 +42,18 @@ public class VidaService {
 				.getValue();
 		
 		return insertLetterPDFLinksVidaResponse;
+	}
+	
+	public DocumentArrivedResponse callVidaDocumentEndPoint(DocumentArrived documentArrivedVidaRequest) throws XmlMappingException, IOException, JAXBException {
+
+		javax.xml.bind.JAXBElement<DocumentArrivedResponse> jaxbElement = (javax.xml.bind.JAXBElement<DocumentArrivedResponse>) connector.callWebService(
+				documentWSServiceEndpoint,
+				documentArrivedVidaRequest);
+
+		DocumentArrivedResponse documentArrivedVidaResponse = (DocumentArrivedResponse) jaxbElement
+				.getValue();
+		
+		return documentArrivedVidaResponse;
 	}
 
 	public LogMessageResponse callVidaLoggerEndPoint(LogMessage logMessageRequest) throws XmlMappingException, IOException, JAXBException {

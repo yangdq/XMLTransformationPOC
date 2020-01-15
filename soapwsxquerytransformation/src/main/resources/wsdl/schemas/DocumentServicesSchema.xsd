@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by XMLSpy 2013 Professional Ed., Installed for 2 users (with 
+  SMP from 2012-12-20 to 2013-12-21) (MAXIMUS) -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:idoc="http://services.vida.psi.com/InboundDocument/1.0"
+  xmlns:svc="http://webservice.flhk.com/Service/1.0" xmlns:ds="http://webservice.flhk.com/DocumentServices/1.0"
+  targetNamespace="http://webservice.flhk.com/DocumentServices/1.0" elementFormDefault="qualified">
+	<xsd:import namespace="http://services.vida.psi.com/InboundDocument/1.0" schemaLocation="InboundDocSchema.xsd"/>
+	<xsd:import namespace="http://webservice.flhk.com/Service/1.0" schemaLocation="ServiceSchema.xsd"/>
+	<xsd:element name="documentArrivedRequest" type="ds:documentArrivedRequest"/>
+	<xsd:element name="documentMetadata" type="idoc:inboundDocument"/>
+	<xsd:complexType name="documentArrivedRequest">
+		<xsd:sequence>
+			<xsd:element ref="ds:documentMetadata" minOccurs="1" maxOccurs="1"/>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="documentArrivedResponse" type="svc:serviceReply"/>
+</xsd:schema>

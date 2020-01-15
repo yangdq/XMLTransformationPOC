@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 
+  2.2.6hudson-86 svn-revision#12773. -->
+<xsd:schema xmlns:ns0="http://services.vida.psi.com/DocumentServices/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://services.vida.psi.com/DocumentServices/1.0">
+  <xsd:complexType name="documentArrivedResponse">
+    <xsd:sequence>
+      <xsd:element name="serviceReply" type="ns0:inboundDocumentServiceReply" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="documentArrived">
+    <xsd:sequence>
+      <xsd:element name="documentMetadata" type="ns0:inboundDocument" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="calendarDay">
+    <xsd:sequence>
+      <xsd:element name="day" type="xsd:int" />
+      <xsd:element name="month" type="xsd:int" />
+      <xsd:element name="year" type="xsd:int" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="searchDataEntryDocumentsResponse">
+    <xsd:sequence>
+      <xsd:element name="dataEntryDoc" type="ns0:dataEntryDoc" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="dataEntryDoc">
+    <xsd:sequence>
+      <xsd:element name="dcn" type="xsd:string" minOccurs="0" />
+      <xsd:element name="submittedDate" type="xsd:dateTime" minOccurs="0" />
+      <xsd:element name="type" type="xsd:string" minOccurs="0" />
+      <xsd:element name="url" type="xsd:string" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="inboundDocument">
+    <xsd:sequence>
+      <xsd:element name="sourceBatchReference" type="xsd:string" />
+      <xsd:element name="envelopeControlNumber" type="xsd:string" />
+      <xsd:element name="documentControlNumber" type="xsd:string" />
+      <xsd:element name="documentType" type="xsd:string" />
+      <xsd:element name="inboundDocumentSource" type="ns0:inboundDocumentSourceEnum" />
+      <xsd:element name="accountNumber" type="xsd:long" minOccurs="0" />
+      <xsd:element name="webConfirmationId" type="xsd:string" minOccurs="0" />
+      <xsd:element name="receivedDate" type="xsd:string" />
+      <xsd:element name="scanDate" type="xsd:dateTime" />
+      <xsd:element name="unreadable" type="xsd:boolean" />
+      <xsd:element name="missingPages" type="xsd:boolean" />
+      <xsd:element name="alreadyWorked" type="xsd:boolean" />
+      <xsd:element name="envelopeContainsRenewalDocument" type="xsd:boolean" />
+      <xsd:element name="envelopeContainsApplicationDocument" type="xsd:boolean" />
+      <xsd:element name="forwardingAddressPresent" type="xsd:boolean" />
+      <xsd:element name="letterId" type="xsd:long" minOccurs="0" />
+      <xsd:element name="paymentAmount" type="xsd:decimal" minOccurs="0" />
+      <xsd:element name="checkNumber" type="xsd:string" minOccurs="0" />
+      <xsd:element name="imageLocation" type="xsd:string" />
+      <xsd:element name="imageFormat" type="xsd:string" />
+      <xsd:element name="webEnvNumber" type="xsd:string" minOccurs="0" />
+      <xsd:element name="imageRefId" type="xsd:string" minOccurs="0" />
+      <xsd:element name="webUploadDate" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  
+  <xsd:complexType name="searchDataEntryDocuments">
+    <xsd:sequence>
+      <xsd:element name="selectApplications" type="xsd:boolean" />
+      <xsd:element name="createdOn" type="ns0:calendarDay" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="inboundDocumentServiceReply">
+    <xsd:sequence>
+      <xsd:element name="serviceReplyStatus" type="ns0:serviceReplyEnum" minOccurs="0" />
+      <xsd:element name="message" type="xsd:string" minOccurs="0" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="documentArrivedResponse" type="ns0:documentArrivedResponse" />
+  <xsd:element name="documentArrived" type="ns0:documentArrived" />
+  <xsd:element name="searchDataEntryDocumentsResponse" type="ns0:searchDataEntryDocumentsResponse" />
+  <xsd:element name="inboundDocument" type="ns0:inboundDocument" />
+  <xsd:element name="searchDataEntryDocuments" type="ns0:searchDataEntryDocuments" />
+  
+  <xsd:simpleType name="inboundDocumentSourceEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="MAIL" />
+      <xsd:enumeration value="FAX" />
+      <xsd:enumeration value="EMAIL" />
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:simpleType name="serviceReplyEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="SUCCESS" />
+      <xsd:enumeration value="FAILURE" />
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>
