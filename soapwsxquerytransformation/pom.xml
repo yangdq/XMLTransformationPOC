@@ -101,7 +101,7 @@
 				
 				<executions>
 					<execution>
-						<id>schema-generate</id>
+						<id>schema-generate-general</id>
 						<goals>
 							<goal>generate</goal>
 						</goals>
@@ -110,7 +110,7 @@
 						      <arg>-Xannotate</arg> 
 						      <arg>-nv</arg> 
 						     </args> 						
-							<generatePackage>com.soap.ws.xquery.transformer.vidaJaxbclasses</generatePackage>
+							<!-- generatePackage>com.soap.ws.xquery.transformer.vidaJaxbclasses</generatePackage-->
 							<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
 							<bindingDirectory>src/main/resources/</bindingDirectory> 
 							 <bindingIncludes> 
@@ -134,6 +134,40 @@
 						     </plugins> 							
 						</configuration>
 					</execution>
+					<execution>
+						<id>schema-generate-vidalogger</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<args> 
+						      <arg>-Xannotate</arg> 
+						      <arg>-nv</arg> 
+						     </args> 						
+							<!-- generatePackage>com.soap.ws.xquery.transformer.vidaJaxbclasses</generatePackage-->
+							<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+							<bindingDirectory>src/main/resources/</bindingDirectory> 
+							 <bindingIncludes> 
+							 	<include>vidawsloggerjaxbbindings.xjb</include>
+							 </bindingIncludes> 
+							<schemaDirectory>${project.basedir}/src/main/resources</schemaDirectory>
+							<schemaIncludes>
+								<include>VidaWSLoggerWSSchema.xsd</include>
+							</schemaIncludes>
+							<plugins> 
+						      <plugin> 
+						       <groupId>org.jvnet.jaxb2_commons</groupId> 
+						       <artifactId>jaxb2-basics</artifactId> 
+						       <version>0.6.3</version> 
+						      </plugin> 
+						      <plugin> 
+						       <groupId>org.jvnet.jaxb2_commons</groupId> 
+						       <artifactId>jaxb2-basics-annotate</artifactId> 
+						       <version>0.6.3</version> 
+						      </plugin> 
+						     </plugins> 							
+						</configuration>
+					</execution>					
 				</executions>
 			</plugin>			
 		</plugins>		

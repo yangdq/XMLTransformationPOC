@@ -9,67 +9,47 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.XmlMappingException;
 import org.springframework.stereotype.Service;
 
+import com.psi.vida.logging.ws.services.LogMessage;
+import com.psi.vida.logging.ws.services.LogMessageResponse;
+import com.psi.vida.services.lettermanagement._1.Confirmation;
+import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
+import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinksResponse;
 import com.soap.ws.xquery.transform.demo.SOAPConnector;
-import com.soap.ws.xquery.transformer.vidaJaxbclasses.Confirmation;
-import com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks;
-import com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinksResponse;
 
 @Service
 public class VidaService {
 
 	@Autowired
 	SOAPConnector connector;
-	Confirmation confirmation = new Confirmation();
 	
     @Value("${vida.letterWSServiceEndpoint}")
     private String letterWSServiceEndpoint;
+    
+    @Value("${vida.loggerWSServiceEndpoint}")
+    private String loggerWSServiceEndpoint;
 
-	public InsertLetterPDFLinksResponse callVidaEndPoint(InsertLetterPDFLinks insertLetterPdfLinksVidaRequest) throws XmlMappingException, IOException, JAXBException {
+	public InsertLetterPDFLinksResponse callVidaPDFLinksEndPoint(InsertLetterPDFLinks insertLetterPdfLinksVidaRequest) throws XmlMappingException, IOException, JAXBException {
 
-//		File transformedXmlInputFile = new File("data/InsertLetterPDFLinksRequestInput.xml");
-//
-//		JAXBContext jaxbContext = JAXBContext
-//				.newInstance(com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks.class);
-//		javax.xml.bind.Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-//		com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks insertLetterPdfLinksVidaRequest = (com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks) jaxbUnmarshaller
-//				.unmarshal(transformedXmlInputFile);
-
-//		com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks convertedInsertLetterPdfLinksVidaRequest = convertReqToVidaEndPointRequest(
-//				insertLetterPdfLinksVidaRequest);
-
-		/*
-		 * javax.xml.bind.JAXBElement jaxbElement = (javax.xml.bind.JAXBElement)
-		 * connector.callWebService(
-		 * "http://localhost:9090/ws/CustomerDetails/lettermanagerwsschema",
-		 * convertedInsertLetterPdfLinksVidaRequest);
-		 */
-
-		// Service call to QF3
 		javax.xml.bind.JAXBElement<InsertLetterPDFLinksResponse> jaxbElement = (javax.xml.bind.JAXBElement<InsertLetterPDFLinksResponse>) connector.callWebService(
 				letterWSServiceEndpoint,
 				insertLetterPdfLinksVidaRequest);
 
 		InsertLetterPDFLinksResponse insertLetterPDFLinksVidaResponse = (InsertLetterPDFLinksResponse) jaxbElement
 				.getValue();
-
-//		InsertLetterPDFLinksResponse insertLetterPDFLinksOsbResponse = new InsertLetterPDFLinksResponse();
-//		confirmation.setMessage(insertLetterPDFLinksVidaResponse.getReturn().getMessage());
-//		confirmation.setServiceReply(ServiceReplyEnum.SUCCESS);
-//
-//		insertLetterPDFLinksOsbResponse.setReturn(confirmation);
-//
-//		return insertLetterPDFLinksOsbResponse;
 		
-
 		return insertLetterPDFLinksVidaResponse;
-
 	}
 
-//	private com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks convertReqToVidaEndPointRequest(
-//			com.soap.ws.xquery.transformer.jaxbclasses.InsertLetterPDFLinks links) {
-//		com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks vidaLink = new com.soap.ws.xquery.transformer.vidaJaxbclasses.InsertLetterPDFLinks();
-//		vidaLink.setFileName(links.getFileName());
-//		vidaLink.setFilePath(links.getFilePath());
-//		return vidaLink;
-//	}
+	public LogMessageResponse callVidaLoggerEndPoint(LogMessage logMessageRequest) throws XmlMappingException, IOException, JAXBException {
+
+		javax.xml.bind.JAXBElement<LogMessageResponse> jaxbElement = (javax.xml.bind.JAXBElement<LogMessageResponse>) connector.callWebService(
+				loggerWSServiceEndpoint,
+				logMessageRequest);
+
+		LogMessageResponse logMessageVidaResponse = (LogMessageResponse) jaxbElement
+				.getValue();
+		
+		return logMessageVidaResponse;
+	}
+
 }

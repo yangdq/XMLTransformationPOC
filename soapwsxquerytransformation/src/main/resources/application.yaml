@@ -1,14 +1,41 @@
 server:
   port: 8090
+xslt:
+  request: pdfLinkRequest.xslt
+  response: pdfLinkResponse.xslt
+  
+spring:
+  profiles:
+    active: ${SPRING_PROFILE:development}
+  
+---
+spring:  profiles: development
+  cache:
+    type: simple
+  
+  activemq:    in-memory: true
 logging:
   level:
     org:
       springframework:
-        web: DEBUG
-
-xslt:
-  request: pdfLinkRequest.xslt
-  response: pdfLinkResponse.xslt
-
+        web: DEBUG  
 vida:
   letterWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/LettersManagement/LetterManagerWSService
+  loggerWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/commonServices/VidaWSLoggerWS        
+  
+---
+spring:
+  profiles: production
+  cache:
+    type: redis
+  
+  activemq:
+    in-memory: true
+logging:
+  level:
+    org:
+      springframework:
+        web: ERROR  
+vida:
+  letterWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/LettersManagement/LetterManagerWSService   
+  loggerWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/commonServices/VidaWSLoggerWS                

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. 
+	RI's version is JAX-WS RI 2.2.6hudson-86 svn-revision#12773. -->
+<xsd:schema xmlns:ns0="http://services.ws.logging.vida.psi.com/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.ws.logging.vida.psi.com/">
+	<xsd:complexType name="logMessageResponse" />
+	<xsd:complexType name="logMessage">
+		<xsd:sequence>
+			<xsd:element name="transactionName" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="transactionId" type="xsd:string" 
+				minOccurs="0"/>
+			<xsd:element name="payload" type="xsd:string" minOccurs="0" />
+			<xsd:element name="status" type="ns0:wsAuditStatusEnum"
+				minOccurs="0" />
+			<xsd:element name="statusReason" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="correlationId" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="primaryObjectId" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="objectType" type="xsd:string"
+				minOccurs="0" />
+			<xsd:element name="requestTimestamp" type="xsd:dateTime"
+				minOccurs="0" />
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="logMessageResponse" type="ns0:logMessageResponse" />
+	<xsd:element name="logMessage" type="ns0:logMessage" />
+	<xsd:simpleType name="wsAuditStatusEnum">
+		<xsd:restriction base="xsd:string">
+			<xsd:enumeration value="REQUEST_RECEIVED" />
+			<xsd:enumeration value="REPLY_SENT" />
+			<xsd:enumeration value="FAILURE" />
+		</xsd:restriction>
+	</xsd:simpleType>
+</xsd:schema>

@@ -5,16 +5,16 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:annox="http://annox.dev.java.net" >
    
-    <jaxb:bindings schemaLocation="VidaLetterManagerWSSchema.xsd" node="/xs:schema">
-	    <jaxb:bindings node="xs:complexType[@name='insertLetterPDFLinksResponse']">
+    <jaxb:bindings schemaLocation="VidaWSLoggerWSSchema.xsd" node="/xs:schema">
+	    <jaxb:bindings node="xs:complexType[@name='logMessageResponse']">
 	      <annox:annotate>
-	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="insertLetterPDFLinksResponse"/>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="logMessageResponse"/>
 	      </annox:annotate>
 	    </jaxb:bindings>  
 	    
-	    <jaxb:bindings node="xs:complexType[@name='insertLetterPDFLinks']">
+	    <jaxb:bindings node="xs:complexType[@name='logMessage']">
 	      <annox:annotate>
-	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="insertLetterPDFLinks"/>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="logMessage"/>
 	      </annox:annotate>
 	    </jaxb:bindings> 	      	    	    	        
     </jaxb:bindings> 
