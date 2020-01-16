@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:insertLetterPDFLinks xmlns:ns2="http://services.vida.psi.com/LetterManagement/1.0">
+    <transactionId>100000</transactionId>
+    <fileName>406.pdf</fileName>
+    <filePath>https://imgpd0.corp.psi/DOCUMENT/2013/12/28/8467764.pdf</filePath>
+</ns2:insertLetterPDFLinks>

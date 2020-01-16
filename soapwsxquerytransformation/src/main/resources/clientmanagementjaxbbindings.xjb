@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings 
+    version="2.1" 
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:annox="http://annox.dev.java.net" >
+   
+    <jaxb:bindings schemaLocation="ClientManagementWSSchema.xsd" node="/xs:schema">    
+	    <jaxb:bindings node="xs:complexType[@name='isAliveResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="isAliveResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='isAlive']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="isAlive"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+		
+	    <jaxb:bindings node="xs:complexType[@name='viewRenewalResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="viewRenewalResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='viewRenewal']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="viewRenewal"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+
+	    <jaxb:bindings node="xs:complexType[@name='submitRenewalResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="submitRenewalResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='submitRenewal']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="submitRenewal"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+	    
+	    <jaxb:bindings node="xs:complexType[@name='authenticateAccountResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="authenticateAccountResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='authenticateAccount']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="authenticateAccount"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+
+	    <jaxb:bindings node="xs:complexType[@name='addAccountNoteResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="addAccountNoteResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='addAccountNote']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="addAccountNote"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+
+	    <jaxb:bindings node="xs:complexType[@name='addAccountNoteResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="addAccountNoteResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='addAccountNote']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="addAccountNote"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+
+	    <jaxb:bindings node="xs:complexType[@name='applicationSearchResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="applicationSearchResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='applicationSearch']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="applicationSearch"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+
+	    <jaxb:bindings node="xs:complexType[@name='accountSearchResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="accountSearchResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='accountSearch']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="accountSearch"/>
+	      </annox:annotate>
+	    </jaxb:bindings>
+    </jaxb:bindings> 
+    
+</jaxb:bindings>

@@ -1,0 +1,892 @@
+<xsd:schema xmlns:ns0="http://services.vida.psi.com/ServiceClient/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://services.vida.psi.com/ServiceClient/1.0">
+    <xsd:complexType name="viewAccountData">
+        <xsd:sequence>
+            <xsd:element name="accountNumber" type="xsd:long" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="person">
+        <xsd:sequence>
+            <xsd:element name="blindOrDisabled" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="caretaker" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="citizenshipDocumentId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="citizenshipFactors" type="ns0:citizenshipFactors" minOccurs="0"/>
+            <xsd:element name="citizenshipManualTriedDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="cmsEligibility" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="cmsEligibilityDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="dateOfBirth" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="deceased" type="xsd:boolean"/>
+            <xsd:element name="deceasedDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="declaredUsCitizenIndicator" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="employmentFactors" type="ns0:employmentFactors" minOccurs="0"/>
+            <xsd:element name="fosterCare" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="fullTimeStudent" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="gender" type="ns0:genderEnum" minOccurs="0"/>
+            <xsd:element name="hsmvVerified" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="hsmvVerifiedDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="identityDocumentId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="identityFactors" type="ns0:identityFactors" minOccurs="0"/>
+            <xsd:element name="identityVerifiedFlag" type="xsd:boolean"/>
+            <xsd:element name="immigrationFactors" type="ns0:immigrationFactors" minOccurs="0"/>
+            <xsd:element name="incarcerated" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="jpaVersion" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="limitedInAnyWay" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="mecId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="medicaidEligibilityEndDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="medicaidMatch" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="medicaidMatchDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="medicaidMatchStatusDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="medicaidNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="memberNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="name" type="ns0:personName" minOccurs="0"/>
+            <xsd:element name="needsSpecialTherapy" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="numberOfBabiesDue" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="personId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="personNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="pregnant" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="race1" type="ns0:raceEnum" minOccurs="0"/>
+            <xsd:element name="race2" type="ns0:raceEnum" minOccurs="0"/>
+            <xsd:element name="ssn" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="ssnApplicationDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="stateEmployeeVerified" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="stateEmployeeVerifiedDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="taxationFactors" type="ns0:taxationFactors" minOccurs="0"/>
+            <xsd:element name="tribalFactors" type="ns0:tribalFactors" minOccurs="0"/>
+            <xsd:element name="tribalMembershipDocumentId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="unpaidMedicalBillsIndicator" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="usEntryDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="uscisNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="usesMoreMedicalCareThenUsual" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="veteranStatus" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="workPhone" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="enrolledHealthPlan">
+        <xsd:sequence>
+            <xsd:element name="coverageMonth" type="ns0:calendarMonth"/>
+            <xsd:element name="enrollmentDisplayStatus" type="ns0:enrollmentDisplayStatusEnum"/>
+            <xsd:element name="medicalEnrollmentStatus" type="ns0:externalEnrollmentStatusEnum"/>
+            <xsd:element name="dentalPlan" type="ns0:healthPlan" minOccurs="0"/>
+            <xsd:element name="dentalPlanId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="medicalPlan" type="ns0:healthPlan" minOccurs="0"/>
+            <xsd:element name="medicalPlanId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="programName" type="ns0:programTypeEnum" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accountContactInfo">
+        <xsd:sequence>
+            <xsd:element name="defaultLanguage" type="ns0:languagePreferenceEnum"/>
+            <xsd:element name="emailBadAddress" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="accountId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="cellPhone" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="doNotCallFlag" type="xsd:boolean"/>
+            <xsd:element name="emailAddress" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="emailContactFlag" type="xsd:boolean"/>
+            <xsd:element name="homeAddress" type="ns0:address" minOccurs="0"/>
+            <xsd:element name="homeAndMailingAddressAreSame" type="xsd:boolean"/>
+            <xsd:element name="homePhone" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="jpaVersion" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="mailingAddress" type="ns0:address" minOccurs="0"/>
+            <xsd:element name="noPhoneNumberProvided" type="xsd:boolean"/>
+            <xsd:element name="password" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="preferredContactMethod" type="ns0:preferredContactMethod" minOccurs="0"/>
+            <xsd:element name="smsContactFlag" type="xsd:boolean"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="immigrationFactors">
+        <xsd:sequence>
+            <xsd:element name="arrivedBefore1996" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="eligibleImmigrationStatus" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="immigrantCode" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="immigrationDocumentNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="immigrationDocumentType" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="taxationFactors">
+        <xsd:sequence>
+            <xsd:element name="claimedBy" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="claimsDependent" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="hasCofiler" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="primaryTaxFilerIndicator" type="xsd:boolean" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accountMembership">
+        <xsd:sequence>
+            <xsd:element name="accountMembershipId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="accountMembershipNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="applicationSignedFlag" type="xsd:boolean"/>
+            <xsd:element name="applyingForBenefitsIndicator" type="xsd:boolean" minOccurs="0"/>
+            <!-- TODO REQ isChild need to drop this field. It will affect ATM? -->
+            <!-- <xsd:element name="childFlag" type="xsd:boolean"/> -->
+            <xsd:element name="claimedByAccountMembershipId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="cmsOptOutFlag" type="xsd:boolean"/>
+            <xsd:element name="enrollmentStatusEnum" type="ns0:enrollmentStatusEnum" minOccurs="0"/>
+            <xsd:element name="ffmReferralOverrideDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="insuranceProviderTO" type="ns0:insuranceProvider" minOccurs="0"/>
+            <xsd:element name="jpaVersion" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="medicaidEligibilityStatusDate" type="xsd:dateTime" minOccurs="0"/>
+            <xsd:element name="medicaidMatchOverrideDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="medicaidReferralOverrideDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="movedFromAccountNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="movedToAccountNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="optInFullPayFlag" type="xsd:boolean"/>
+            <xsd:element name="parentType" type="ns0:parentTypeEnum" minOccurs="0"/>
+            <xsd:element name="person" type="ns0:person" minOccurs="0"/>
+            <xsd:element name="primaryTaxFilerIndicator" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="spouseTaxFilerAccountMembershipId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="statusDate" type="xsd:dateTime" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="personName">
+        <xsd:sequence>
+            <xsd:element name="firstName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="middleInitial" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="lastName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="suffix" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="updateAccountResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:confirmation" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="income">
+        <xsd:sequence>
+            <xsd:element name="entityStatus" type="ns0:entityStatusEnum"/>
+            <xsd:element name="activeFlag" type="xsd:boolean"/>
+            <xsd:element name="documentId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="employerName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="frequency" type="ns0:monetaryFlowFrequency" minOccurs="0"/>
+            <xsd:element name="hoursWorkedPerWeek" type="xsd:int" minOccurs="0"/>
+            <xsd:element name="incomeId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="incomeNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="jpaVersion" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="otherTypeDescription" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="reportedMonthlyAmount" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="selfEmploymentDocDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="type" type="ns0:incomeTypeEnum" minOccurs="0"/>
+            <xsd:element name="verifiedEmployerName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="verifiedMonthlyAmount" type="xsd:decimal" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="viewAccountDataResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:accountData" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="healthPlan">
+        <xsd:sequence>
+            <xsd:element name="emailAddress" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="healthPlanName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="phoneNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="webSiteAddress" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="confirmation">
+        <xsd:sequence>
+            <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="serviceReply" type="ns0:serviceReplyEnum" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="identityFactors">
+        <xsd:sequence>
+            <xsd:element name="fiveYearStatus" type="ns0:fiveYearBarStatus" minOccurs="0"/>
+            <xsd:element name="identityVerified" type="xsd:boolean"/>
+            <xsd:element name="identityVerifiedByAtoMetadataId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="identityVerifiedDate" type="ns0:calendarDay" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="isAlive"/>
+    <xsd:complexType name="updateAccountData">
+        <xsd:sequence>
+            <xsd:element name="members" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="member" type="ns0:member" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="accountContactInfo" type="ns0:accountContactInfo" minOccurs="0"/>
+            <xsd:element name="accountNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="couponsRequested" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="defaultLanguage" type="ns0:languagePreferenceEnum" minOccurs="0"/>
+            <xsd:element name="jpaVersion" type="xsd:long" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="member">
+        <xsd:sequence>
+            <xsd:element name="accountMembership" type="ns0:accountMembership" minOccurs="0"/>
+            <xsd:element name="availableDentalPlans" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="dentalPlan" type="ns0:healthPlan" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="availableHealthPlans" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="healthPlan" type="ns0:healthPlan" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="expenseMissingInfoItems" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="expenseMissingInfoItem" type="ns0:expenseMissingInfoEnum" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="expenses" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="expense" type="ns0:expense" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="incomeMissingInfoItems" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="incomeMissingInfoItem" type="ns0:incomeMissingInfoEnum" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="incomes" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="income" type="ns0:income" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="memberMissingInfoItems" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="memberMissingInfoItem" type="ns0:externalMemberMissingInfoEnum" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="currentEnrolledHealthPlan" type="ns0:enrolledHealthPlan" minOccurs="0"/>
+            <xsd:element name="healthPlanChangeRequest" type="ns0:healthPlanChangeRequest" minOccurs="0"/>
+            <xsd:element name="inDentalChoicePeriod" type="xsd:boolean"/>
+            <xsd:element name="inMedicalChoicePeriod" type="xsd:boolean"/>
+            <xsd:element name="nextMonthEnrolledHealthPlan" type="ns0:enrolledHealthPlan" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="healthPlanChangeRequest">
+        <xsd:sequence>
+            <xsd:element name="dentalPlan" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="medicalPlan" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="citizenshipFactors">
+        <xsd:sequence>
+            <xsd:element name="citizenshipVerifiedByAtoMetadataId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="citizenshipVerifiedDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="citizenshipVerifiedType" type="ns0:citizenshipTypeEnum" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="employmentFactors">
+        <xsd:sequence>
+            <xsd:element name="employed" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="noOtherIncome" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="selfEmployed" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="unemployed" type="xsd:boolean" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="calendarMonth">
+        <xsd:sequence>
+            <xsd:element name="month" type="xsd:int"/>
+            <xsd:element name="year" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="isAliveResponse">
+        <xsd:sequence>
+            <xsd:element name="return" type="ns0:serverStatusResponse" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="accountData">
+        <xsd:sequence>
+            <xsd:element name="accountMissingInfoItems" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="accountMissingInfoItem" type="ns0:externalAccountMissingInfoEnum" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="defaultLanguage" type="ns0:languagePreferenceEnum"/>
+            <xsd:element name="members" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="member" type="ns0:member" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="letters" minOccurs="0">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="letterRequest" type="ns0:letterRequest" minOccurs="0" maxOccurs="unbounded"/>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+            <xsd:element name="accountContactInfo" type="ns0:accountContactInfo" minOccurs="0"/>
+            <xsd:element name="accountNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="enableRequestForCoupon" type="xsd:boolean"/>
+            <xsd:element name="inRenewal" type="xsd:boolean"/>
+            <xsd:element name="jpaVersion" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="paymentInformation" type="ns0:paymentInfo" minOccurs="0"/>
+            <xsd:element name="pregnancyDueDate" type="ns0:calendarDay" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="serverStatusResponse">
+        <xsd:sequence>
+            <xsd:element name="serverStatuses" minOccurs="0">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="status" type="ns0:serverStatusEnum" minOccurs="0" maxOccurs="unbounded"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="statusDetail" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="paymentInfo">
+        <xsd:sequence>
+            <xsd:element name="accountBalance" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="amountDue" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="lastPaymentAmountReceived" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="lastPaymentReceivedDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="nextDueDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="paymentStatus" type="ns0:paymentStatusEnum" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="calendarDay">
+        <xsd:sequence>
+            <xsd:element name="day" type="xsd:int"/>
+            <xsd:element name="month" type="xsd:int"/>
+            <xsd:element name="year" type="xsd:int"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="expense">
+        <xsd:sequence>
+            <xsd:element name="entityStatus" type="ns0:entityStatusEnum"/>
+            <xsd:element name="activeFlag" type="xsd:boolean"/>
+            <xsd:element name="disabled" type="xsd:boolean"/>
+            <xsd:element name="expenseId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="expenseNumber" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="frequency" type="ns0:monetaryFlowFrequency" minOccurs="0"/>
+            <xsd:element name="jpaVersion" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="nameOfCaredForPerson" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="otherDeductionName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="otherPayor" type="xsd:boolean"/>
+            <xsd:element name="reportedMonthlyAmount" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="type" type="ns0:expenseTypeEnum" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="updateAccount">
+        <xsd:sequence>
+            <xsd:element name="updateAccountData" type="ns0:updateAccountData" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="address">
+        <xsd:sequence>
+            <xsd:element name="addressType" type="ns0:addressTypeEnum" minOccurs="0"/>
+            <xsd:element name="badAddress" type="xsd:boolean"/>
+            <xsd:element name="city" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="county" type="ns0:countyEnum" minOccurs="0"/>
+            <xsd:element name="line1" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="line2" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="state" type="ns0:stateEnum" minOccurs="0"/>
+            <xsd:element name="validated" type="ns0:addressValidationStatusEnum" minOccurs="0"/>
+            <xsd:element name="zipCode" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="tribalFactors">
+        <xsd:sequence>
+            <xsd:element name="americanIndianOrAlaskanNative" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="eligibleForITUServices" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="receivedITUServices" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="recognizedTribe" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="tribalMembershipVerified" type="xsd:boolean"/>
+            <xsd:element name="tribalMembershipVerifiedByAtoMetadataId" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="tribalMembershipVerifiedDate" type="ns0:calendarDay" minOccurs="0"/>
+            <xsd:element name="tribeName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="letterRequest">
+		<xsd:sequence>
+			<xsd:element name="letterRequestId" type="xsd:long" minOccurs="0"/>
+			<xsd:element name="letterType" type="xsd:string" minOccurs="0"/>
+			<xsd:element name="statusDate" type="xsd:dateTime" minOccurs="0"/>
+		</xsd:sequence>
+	</xsd:complexType>
+    <xsd:complexType name="insuranceProvider">
+        <xsd:sequence>
+            <xsd:element name="employerInsuranceCobra" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="employerInsuranceProviderName" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="employerInsuranceRetiree" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="hasHealthInsurance" type="xsd:boolean" minOccurs="0"/>
+            <xsd:element name="insuranceMonthlyCost" type="xsd:decimal" minOccurs="0"/>
+            <xsd:element name="insuranceProviderId" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="insuranceProviders" type="ns0:insuranceProviderEnum" minOccurs="0" maxOccurs="unbounded" nillable="true"/>
+            <xsd:element name="jpaVersion" type="xsd:long" minOccurs="0"/>
+            <xsd:element name="otherInsurancePolicyNumber" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="otherInsuranceProviderName" type="xsd:string" minOccurs="0"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="viewAccountData" type="ns0:viewAccountData"/>
+    <xsd:element name="updateAccountResponse" type="ns0:updateAccountResponse"/>
+    <xsd:element name="updateAccount" type="ns0:updateAccount"/>
+    <xsd:element name="isAliveResponse" type="ns0:isAliveResponse"/>
+    <xsd:element name="viewAccountDataResponse" type="ns0:viewAccountDataResponse"/>
+    <xsd:element name="accountData" type="ns0:accountData"/>
+    <xsd:element name="isAlive" type="ns0:isAlive"/>
+    <xsd:element name="updateAccountData" type="ns0:updateAccountData"/>
+    <xsd:simpleType name="languagePreferenceEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="en"/>
+            <xsd:enumeration value="es"/>
+            <xsd:enumeration value="ht"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="genderEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MALE"/>
+            <xsd:enumeration value="FEMALE"/>
+            <xsd:enumeration value="UNKNOWN"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="addressTypeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="HOME"/>
+            <xsd:enumeration value="MAILING"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="incomeTypeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ALIMONY"/>
+            <xsd:enumeration value="CANCELED_DEBT"/>
+            <xsd:enumeration value="CAPITAL_GAINS"/>
+            <xsd:enumeration value="CASH_SUPPORT"/>
+            <xsd:enumeration value="COURT_AWARD"/>
+            <xsd:enumeration value="FARMING_OR_FISHING"/>
+            <xsd:enumeration value="INTEREST"/>
+            <xsd:enumeration value="JURY_DUTY"/>
+            <xsd:enumeration value="PENSION"/>
+            <xsd:enumeration value="RENTAL_OR_ROYALTY"/>
+            <xsd:enumeration value="RETIREMENT"/>
+            <xsd:enumeration value="SCHOLARSHIP"/>
+            <xsd:enumeration value="SELF_EMPLOYMENT"/>
+            <xsd:enumeration value="SOCIAL_SECURITY"/>
+            <xsd:enumeration value="SSI"/>
+            <xsd:enumeration value="UNEMPLOYMENT"/>
+            <xsd:enumeration value="UNSPECIFIED"/>
+            <xsd:enumeration value="WAGES"/>
+            <xsd:enumeration value="WINNINGS"/>
+            <xsd:enumeration value="WORKERS_COMP"/>
+            <xsd:enumeration value="VA_BENEFITS"/>
+            <xsd:enumeration value="CHILD_SUPPORT"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="entityStatusEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="NEW"/>
+            <xsd:enumeration value="NO_CHANGE"/>
+            <xsd:enumeration value="CHANGED"/>
+            <xsd:enumeration value="REMOVED"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="insuranceProviderEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MEDICAID"/>
+            <xsd:enumeration value="MEDICARE"/>
+            <xsd:enumeration value="TRICARE"/>
+            <xsd:enumeration value="CHIP"/>
+            <xsd:enumeration value="PEACE_CORPS"/>
+            <xsd:enumeration value="VETERAN_HEALTH_PROGRAM"/>
+            <xsd:enumeration value="EMPLOYER"/>
+            <xsd:enumeration value="PRIVATE"/>
+            <xsd:enumeration value="STATE"/>
+            <xsd:enumeration value="FEDERAL"/>
+            <xsd:enumeration value="OPM"/>
+            <xsd:enumeration value="UNSPECIFIED_LIMITED_COVERAGE"/>
+            <xsd:enumeration value="UNSPECIFIED_FULL_COVERAGE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="serverStatusEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CM_SERVER_ALIVE"/>
+            <xsd:enumeration value="CM_SERVER_OUT_OF_SERVICE"/>
+            <xsd:enumeration value="CM_DB_SERVER_ALIVE"/>
+            <xsd:enumeration value="CM_DB_SERVER_OUT_OF_SERVICE"/>
+            <xsd:enumeration value="CM_SERVER_LIMITED_SERVICE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="expenseTypeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ALIMONY"/>
+            <xsd:enumeration value="STUDENT_LOAN_INTEREST"/>
+            <xsd:enumeration value="OTHER"/>
+            <xsd:enumeration value="CHILD_SUPPORT"/>
+            <xsd:enumeration value="DAYCARE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="externalEnrollmentStatusEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CANCELED_MEDICAID_APPROVED"/>
+            <xsd:enumeration value="CANCELED_MEDICAID_NON_COMPLIANT"/>
+            <xsd:enumeration value="CANCELED_NON_CITIZEN_NON_QUALIFIED"/>
+            <xsd:enumeration value="CANCELED_NON_COMPLIANT"/>
+            <xsd:enumeration value="CANCELED_NON_PAYMENT"/>
+            <xsd:enumeration value="CANCELED_ON_MEDICAID"/>
+            <xsd:enumeration value="CANCELED_OTHER"/>
+            <xsd:enumeration value="CANCELED_OTHER_INS"/>
+            <xsd:enumeration value="CANCELED_OUT_OF_HH"/>
+            <xsd:enumeration value="CANCELED_OUT_OF_STATE"/>
+            <xsd:enumeration value="CANCELED_OVER_AGE"/>
+            <xsd:enumeration value="CANCELED_UNDER_AGE"/>
+            <xsd:enumeration value="DENIED_MEDICAID_APPROVED"/>
+            <xsd:enumeration value="DENIED_MEDICAID_NON_COMPLIANT"/>
+            <xsd:enumeration value="DENIED_NON_CITIZEN_NON_QUALIFIED"/>
+            <xsd:enumeration value="DENIED_NON_COMPLIANT"/>
+            <xsd:enumeration value="DENIED_NON_PAYMENT"/>
+            <xsd:enumeration value="DENIED_ON_MEDICAID"/>
+            <xsd:enumeration value="DENIED_OTHER"/>
+            <xsd:enumeration value="DENIED_OTHER_INS"/>
+            <xsd:enumeration value="DENIED_OUT_OF_HH"/>
+            <xsd:enumeration value="DENIED_OUT_OF_STATE"/>
+            <xsd:enumeration value="DENIED_OVER_AGE"/>
+            <xsd:enumeration value="DENIED_UNDER_AGE"/>
+            <xsd:enumeration value="ENROLLED"/>
+            <xsd:enumeration value="PENDING_ENROLLMENT"/>
+            <xsd:enumeration value="PENDING_MEDICAID_REFERRAL"/>
+            <xsd:enumeration value="PENDING_PREMIUM_PAYMENT"/>
+            <xsd:enumeration value="PENDING_VERIFICATIONS"/>
+            <xsd:enumeration value="UNKNOWN"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="citizenshipTypeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CITIZEN"/>
+            <xsd:enumeration value="QUALIFIED_NON_CITIZEN"/>
+            <xsd:enumeration value="NOT_QUALIFIED_NON_CITIZEN"/>
+            <xsd:enumeration value="QUALIFIED_NON_CITIZEN_LPR"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="countyEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="ALACHUA"/>
+            <xsd:enumeration value="BAKER"/>
+            <xsd:enumeration value="BAY"/>
+            <xsd:enumeration value="BRADFORD"/>
+            <xsd:enumeration value="BREVARD"/>
+            <xsd:enumeration value="BROWARD"/>
+            <xsd:enumeration value="CALHOUN"/>
+            <xsd:enumeration value="CHARLOTTE"/>
+            <xsd:enumeration value="CITRUS"/>
+            <xsd:enumeration value="CLAY"/>
+            <xsd:enumeration value="COLLIER"/>
+            <xsd:enumeration value="COLUMBIA"/>
+            <xsd:enumeration value="MIAMI_DADE"/>
+            <xsd:enumeration value="DESOTO"/>
+            <xsd:enumeration value="DIXIE"/>
+            <xsd:enumeration value="DUVAL"/>
+            <xsd:enumeration value="ESCAMBIA"/>
+            <xsd:enumeration value="FLAGLER"/>
+            <xsd:enumeration value="FRANKLIN"/>
+            <xsd:enumeration value="GADSDEN"/>
+            <xsd:enumeration value="GILCHRIST"/>
+            <xsd:enumeration value="GLADES"/>
+            <xsd:enumeration value="GULF"/>
+            <xsd:enumeration value="HAMILTON"/>
+            <xsd:enumeration value="HARDEE"/>
+            <xsd:enumeration value="HENDRY"/>
+            <xsd:enumeration value="HERNANDO"/>
+            <xsd:enumeration value="HIGHLANDS"/>
+            <xsd:enumeration value="HILLSBOROUGH"/>
+            <xsd:enumeration value="HOLMES"/>
+            <xsd:enumeration value="INDIAN_RIVER"/>
+            <xsd:enumeration value="JACKSON"/>
+            <xsd:enumeration value="JEFFERSON"/>
+            <xsd:enumeration value="LAFAYETTE"/>
+            <xsd:enumeration value="LAKE"/>
+            <xsd:enumeration value="LEE"/>
+            <xsd:enumeration value="LEON"/>
+            <xsd:enumeration value="LEVY"/>
+            <xsd:enumeration value="LIBERTY"/>
+            <xsd:enumeration value="MADISON"/>
+            <xsd:enumeration value="MANATEE"/>
+            <xsd:enumeration value="MARION"/>
+            <xsd:enumeration value="MARTIN"/>
+            <xsd:enumeration value="MONROE"/>
+            <xsd:enumeration value="NASSAU"/>
+            <xsd:enumeration value="OKALOOSA"/>
+            <xsd:enumeration value="OKEECHOBEE"/>
+            <xsd:enumeration value="ORANGE"/>
+            <xsd:enumeration value="OSCEOLA"/>
+            <xsd:enumeration value="PALM_BEACH"/>
+            <xsd:enumeration value="PASCO"/>
+            <xsd:enumeration value="PINELLAS"/>
+            <xsd:enumeration value="POLK"/>
+            <xsd:enumeration value="PUTNAM"/>
+            <xsd:enumeration value="SAINT_JOHNS"/>
+            <xsd:enumeration value="SAINT_LUCIE"/>
+            <xsd:enumeration value="SANTA_ROSA"/>
+            <xsd:enumeration value="SARASOTA"/>
+            <xsd:enumeration value="SEMINOLE"/>
+            <xsd:enumeration value="SUMTER"/>
+            <xsd:enumeration value="SUWANNEE"/>
+            <xsd:enumeration value="TAYLOR"/>
+            <xsd:enumeration value="UNION"/>
+            <xsd:enumeration value="VOLUSIA"/>
+            <xsd:enumeration value="WAKULLA"/>
+            <xsd:enumeration value="WALTON"/>
+            <xsd:enumeration value="WASHINGTON"/>
+            <xsd:enumeration value="UNKNOWN"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="enrollmentDisplayStatusEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="Active"/>
+            <xsd:enumeration value="Cancelled"/>
+            <xsd:enumeration value="Denied"/>
+            <xsd:enumeration value="Pending"/>
+            <xsd:enumeration value="Unknown"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="monetaryFlowFrequency">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WEEKLY"/>
+            <xsd:enumeration value="MONTHLY"/>
+            <xsd:enumeration value="ANNUALLY"/>
+            <xsd:enumeration value="QUARTERLY"/>
+            <xsd:enumeration value="BIWEEKLY"/>
+            <xsd:enumeration value="SEMIMONTHLY"/>
+            <xsd:enumeration value="HOURLY"/>
+            <xsd:enumeration value="DAILY"/>
+            <xsd:enumeration value="SEMIANNUALLY"/>
+            <xsd:enumeration value="TIMES_PER_YEAR_13"/>
+            <xsd:enumeration value="TIMES_PER_YEAR_11"/>
+            <xsd:enumeration value="TIMES_PER_YEAR_10"/>
+            <xsd:enumeration value="ONCE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="programTypeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MK"/>
+            <xsd:enumeration value="HK"/>
+            <xsd:enumeration value="CMSN"/>
+            <xsd:enumeration value="MDCD"/>
+            <xsd:enumeration value="FFM"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="serviceReplyEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="SUCCESS"/>
+            <xsd:enumeration value="FAILURE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="raceEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AMERICAN_INDIAN_OR_ALASKAN_NATIVE"/>
+            <xsd:enumeration value="ASIAN"/>
+            <xsd:enumeration value="BLACK_OR_AFRICAN_AMERICAN"/>
+            <xsd:enumeration value="NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER"/>
+            <xsd:enumeration value="WHITE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="enrollmentStatusEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="APPROVED_MEDICAID"/>
+            <xsd:enumeration value="CANCELED_MEDICAID_NON_COMPLIANT"/>
+            <xsd:enumeration value="CANCELED_NON_COMPLIANT"/>
+            <xsd:enumeration value="CANCELED_NON_PAYMENT"/>
+            <xsd:enumeration value="CANCELED_ON_MEDICAID"/>
+            <xsd:enumeration value="CANCELED_OTHER"/>
+            <xsd:enumeration value="CANCELED_OUT_OF_HH"/>
+            <xsd:enumeration value="CANCELED_VIC_EXPIRED"/>
+            <xsd:enumeration value="DENIED_APP_EXPIRED"/>
+            <xsd:enumeration value="DENIED_CMS_OPT_OUT"/>
+            <xsd:enumeration value="DENIED_MDCD_OVER_INCOME"/>
+            <xsd:enumeration value="DENIED_OUT_OF_HH"/>
+            <xsd:enumeration value="DENIED_MEDICAID_NON_COMPLIANT"/>
+            <xsd:enumeration value="DENIED_NON_COMPLIANT"/>
+            <xsd:enumeration value="DENIED_NON_QUALIFIED"/>
+            <xsd:enumeration value="DENIED_OTHER_INS"/>
+            <xsd:enumeration value="DENIED_OVER_AGE"/>
+            <xsd:enumeration value="DENIED_ON_MEDICAID"/>
+            <xsd:enumeration value="DENIED_OUT_OF_STATE"/>
+            <xsd:enumeration value="DENIED_OTHER"/>
+            <xsd:enumeration value="ENROLLED"/>
+            <xsd:enumeration value="PENDING_ENROLLMENT"/>
+            <xsd:enumeration value="PENDING_MEDICAID_REFERRAL"/>
+            <xsd:enumeration value="PENDING_PREMIUM_PAYMENT"/>
+            <xsd:enumeration value="PENDING_VERIFICATIONS"/>
+            <xsd:enumeration value="UNKNOWN"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="addressValidationStatusEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="VALID"/>
+            <xsd:enumeration value="INVALID"/>
+            <xsd:enumeration value="NOT_VALIDATED"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="stateEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="AL"/>
+            <xsd:enumeration value="AK"/>
+            <xsd:enumeration value="AZ"/>
+            <xsd:enumeration value="AR"/>
+            <xsd:enumeration value="CA"/>
+            <xsd:enumeration value="CO"/>
+            <xsd:enumeration value="CT"/>
+            <xsd:enumeration value="DE"/>
+            <xsd:enumeration value="DC"/>
+            <xsd:enumeration value="FL"/>
+            <xsd:enumeration value="GA"/>
+            <xsd:enumeration value="HI"/>
+            <xsd:enumeration value="ID"/>
+            <xsd:enumeration value="IL"/>
+            <xsd:enumeration value="IN"/>
+            <xsd:enumeration value="IA"/>
+            <xsd:enumeration value="KS"/>
+            <xsd:enumeration value="KY"/>
+            <xsd:enumeration value="LA"/>
+            <xsd:enumeration value="ME"/>
+            <xsd:enumeration value="MD"/>
+            <xsd:enumeration value="MA"/>
+            <xsd:enumeration value="MI"/>
+            <xsd:enumeration value="MN"/>
+            <xsd:enumeration value="MS"/>
+            <xsd:enumeration value="MO"/>
+            <xsd:enumeration value="MT"/>
+            <xsd:enumeration value="NE"/>
+            <xsd:enumeration value="NV"/>
+            <xsd:enumeration value="NH"/>
+            <xsd:enumeration value="NJ"/>
+            <xsd:enumeration value="NM"/>
+            <xsd:enumeration value="NY"/>
+            <xsd:enumeration value="NC"/>
+            <xsd:enumeration value="ND"/>
+            <xsd:enumeration value="OH"/>
+            <xsd:enumeration value="OK"/>
+            <xsd:enumeration value="OR"/>
+            <xsd:enumeration value="PA"/>
+            <xsd:enumeration value="RI"/>
+            <xsd:enumeration value="SC"/>
+            <xsd:enumeration value="SD"/>
+            <xsd:enumeration value="TN"/>
+            <xsd:enumeration value="TX"/>
+            <xsd:enumeration value="UT"/>
+            <xsd:enumeration value="VT"/>
+            <xsd:enumeration value="VA"/>
+            <xsd:enumeration value="WA"/>
+            <xsd:enumeration value="WV"/>
+            <xsd:enumeration value="WI"/>
+            <xsd:enumeration value="WY"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="fiveYearBarStatus">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MET"/>
+            <xsd:enumeration value="NOT_MET"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="externalAccountMissingInfoEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="MISSING_UNKNOWN"/>
+            <xsd:enumeration value="RESIDENCE_STATE_BLANK"/>
+            <xsd:enumeration value="RESIDENCE_COUNTY_BLANK"/>
+            <xsd:enumeration value="HOME_PHONE_BLANK"/>
+            <xsd:enumeration value="CELL_PHONE_BLANK"/>
+            <xsd:enumeration value="INCOME_UNVERIFIED"/>
+            <xsd:enumeration value="APPLICATION_NOT_SIGNED"/>
+            <xsd:enumeration value="INCOMPLETE_MAILING_ADDRESS"/>
+            <xsd:enumeration value="MISSING_EARNED_INCOME"/>
+            <xsd:enumeration value="MISSING_UNEARNED_INCOME"/>
+            <xsd:enumeration value="HOUSEHOLD_UNPAID_MEDICAL_BLANK"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="expenseMissingInfoEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="INCOMPLETE_DAYCARE_EXPENSE_INCARE_NAME"/>
+            <xsd:enumeration value="INCOMPLETE_DAYCARE_EXPENSE_AMOUNT"/>
+            <xsd:enumeration value="INCOMPLETE_DAYCARE_EXPENSE_PAYOR"/>
+            <xsd:enumeration value="INCOMPLETE_CHILD_SUPPORT_EXPENSE_AMOUNT"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="preferredContactMethod">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="EMAIL"/>
+            <xsd:enumeration value="MAIL"/>
+            <xsd:enumeration value="TEXT_MESSAGE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="parentTypeEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="PARENT1"/>
+            <xsd:enumeration value="PARENT2"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="externalMemberMissingInfoEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="PARENT_ONE_FIRST_NAME_BLANK"/>
+            <xsd:enumeration value="PARENT_ONE_LAST_NAME_BLANK"/>
+            <xsd:enumeration value="PARENT_ONE_SSN_BLANK"/>
+            <xsd:enumeration value="PARENT_ONE_DOB_BLANK"/>
+            <xsd:enumeration value="PARENT_TWO_FIRST_NAME_BLANK"/>
+            <xsd:enumeration value="PARENT_TWO_LAST_NAME_BLANK"/>
+            <xsd:enumeration value="PARENT_TWO_SSN_BLANK"/>
+            <xsd:enumeration value="PARENT_TWO_DOB_BLANK"/>
+            <xsd:enumeration value="CHILD_DOB_BLANK"/>
+            <xsd:enumeration value="CHILD_GENDER_BLANK"/>
+            <xsd:enumeration value="CHILD_DECLARED_CITIZENSHIP_BLANK"/>
+            <xsd:enumeration value="CHILD_NONCITIZEN_UNVERIFIED"/>
+            <xsd:enumeration value="CHILD_CITIZEN_UNVERIFIED"/>
+            <xsd:enumeration value="CHILD_PARENT_ONE_BLANK"/>
+            <xsd:enumeration value="CHILD_PARENT_TWO_BLANK"/>
+            <xsd:enumeration value="CHILD_FIRST_NAME_BLANK"/>
+            <xsd:enumeration value="CHILD_LAST_NAME_BLANK"/>
+            <xsd:enumeration value="CHILD_PRESENCE_HOUSEHOLD_UNKNOWN"/>
+            <xsd:enumeration value="CHILD_SSN_BLANK"/>
+            <xsd:enumeration value="CHILD_OTHER_INSURANCE_BLANK"/>
+            <xsd:enumeration value="CHILD_OTHER_INSURANCE_NAME_BLANK"/>
+            <xsd:enumeration value="CHILD_OTHER_INSURANCE_COST_BLANK"/>
+            <xsd:enumeration value="CHILD_VOL_CANC_INS_BLANK"/>
+            <xsd:enumeration value="CHILD_VOL_CANC_INS_DATE_BLANK"/>
+            <xsd:enumeration value="CHILD_TRIBAL_MMBRSHP_UNVERIFIED"/>
+            <xsd:enumeration value="SIBLING_DATE_OF_BIRTH_BLANK"/>
+            <xsd:enumeration value="SIBLING_PARENT_ONE_BLANK"/>
+            <xsd:enumeration value="SIBLING_PARENT_TWO_BLANK"/>
+            <xsd:enumeration value="PARENT_OTHER_FIRST_NAME_BLANK"/>
+            <xsd:enumeration value="PARENT_OTHER_LAST_NAME_BLANK"/>
+            <xsd:enumeration value="PARENT_OTHER_SSN_BLANK"/>
+            <xsd:enumeration value="SPECIAL_NEEDS_BLANK"/>
+            <xsd:enumeration value="APPLYING_FOR_KIDCARE_BLANK"/>
+            <xsd:enumeration value="CHILD_IDENTITY_UNVERIFIED"/>
+            <xsd:enumeration value="CHILD_MDCD_REFERRAL_PENDING"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="paymentStatusEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="CURRENT"/>
+            <xsd:enumeration value="PAST_DUE"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+    <xsd:simpleType name="incomeMissingInfoEnum">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="INCOMPLETE_EARNED_INCOME_NAME"/>
+            <xsd:enumeration value="INCOMPLETE_EARNED_INCOME_AMOUNT"/>
+            <xsd:enumeration value="INCOMPLETE_CHILD_SUPPORT_INCOME_NAME"/>
+            <xsd:enumeration value="INCOMPLETE_UNEARNED_INCOME_NAME"/>
+            <xsd:enumeration value="INCOMPLETE_UNEARNED_INCOME_AMOUNT"/>
+            <xsd:enumeration value="PROOF_OF_EARNED_INCOME"/>
+            <xsd:enumeration value="PROOF_OF_SELF_EMPLOYMENT_INCOME"/>
+            <xsd:enumeration value="PROOF_OF_UNEARNED_INCOME"/>
+            <xsd:enumeration value="PROOF_OF_CHILD_SUPPORT_INCOME"/>
+            <xsd:enumeration value="PROOF_OF_SSA_INCOME"/>
+            <xsd:enumeration value="PROOF_OF_SSI_INCOME"/>
+            <xsd:enumeration value="PROOF_OF_UNEMPLOYMENT_INCOME"/>
+            <xsd:enumeration value="PROOF_OF_OTHER_INCOME"/>
+        </xsd:restriction>
+    </xsd:simpleType>
+</xsd:schema>

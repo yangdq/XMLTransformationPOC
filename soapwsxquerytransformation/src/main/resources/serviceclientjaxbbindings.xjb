@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jaxb:bindings 
+    version="2.1" 
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:annox="http://annox.dev.java.net" >
+   
+    <jaxb:bindings schemaLocation="ServiceClientWSSchema.xsd" node="/xs:schema">
+	    <jaxb:bindings node="xs:complexType[@name='updateAccountResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="updateAccountResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='updateAccount']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="updateAccount"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+	    
+	    <jaxb:bindings node="xs:complexType[@name='viewAccountDataResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="viewAccountDataResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='viewAccountData']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="viewAccountData"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 
+	    
+	    <jaxb:bindings node="xs:complexType[@name='isAliveResponse']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="isAliveResponse"/>
+	      </annox:annotate>
+	    </jaxb:bindings>  
+	    
+	    <jaxb:bindings node="xs:complexType[@name='isAlive']">
+	      <annox:annotate>
+	        <annox:annotate annox:class="javax.xml.bind.annotation.XmlRootElement" name="isAlive"/>
+	      </annox:annotate>
+	    </jaxb:bindings> 	    	    	      	    	    	        
+    </jaxb:bindings> 
+    
+</jaxb:bindings>
