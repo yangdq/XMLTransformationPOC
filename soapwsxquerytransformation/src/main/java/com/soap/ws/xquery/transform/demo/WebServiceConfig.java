@@ -1,7 +1,5 @@
 package com.soap.ws.xquery.transform.demo;
 
-import java.util.concurrent.TimeUnit;
-
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 
@@ -12,10 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.http.CacheControl;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.server.SmartEndpointInterceptor;
