@@ -3,10 +3,10 @@ package com.soap.ws.xquery.transform.demo.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.server.SmartEndpointInterceptor;
@@ -52,6 +52,20 @@ public class InterceptorsConfig extends WsConfigurerAdapter {
 //				payloadTransInterceptor,
 //				"http://webservice.flhk.com/FLHKWebService/1.0", "insertLetterPDFLinks2"));
 //	  }
+	  
+    /**
+     * Generic Payload Logging Filter.
+     * @return CommonsRequestLoggingFilter
+     */
+	  @Bean
+	  public CommonsRequestLoggingFilter requestLoggingFilter() {
+	      CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
+	      loggingFilter.setIncludeClientInfo(true);
+	      loggingFilter.setIncludeQueryString(true);
+	      loggingFilter.setIncludePayload(true);
+	      loggingFilter.setMaxPayloadLength(64000);
+	      return loggingFilter;
+	  }
     
 	  @Bean
 	  @Order(1)
