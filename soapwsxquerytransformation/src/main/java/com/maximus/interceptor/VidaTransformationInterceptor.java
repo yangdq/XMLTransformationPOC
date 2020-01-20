@@ -31,23 +31,37 @@ public class VidaTransformationInterceptor extends PayloadTransformingIntercepto
   public boolean handleRequest(MessageContext messageContext, Object endpoint)
     throws Exception
   {
-	System.out.println("########################VidaTransformationInterceptor handleRequest#################");
+	System.out.println("\n########################VidaTransformationInterceptor handleRequest#################");
 	SoapMessage message = (SoapMessage) messageContext.getRequest();
-	System.out.println("originalMessage = [");
 	StringWriter sr = new StringWriter();
 	ByteArrayOutputStream stream = new ByteArrayOutputStream();
 	message.writeTo(stream);
 	String input = new String(stream.toByteArray());
 	//message.writeTo(System.out);
-	System.out.println("OriginalMessage = [\n" + input);
+	System.out.println("\nOriginalMessage = [\n" + input);
 		
-   super.handleRequest(messageContext, endpoint);
+   boolean result = super.handleRequest(messageContext, endpoint);
     
 	message = (SoapMessage) messageContext.getRequest();
-	System.out.println("transformedMessage = [\n" );
+	System.out.println("\nTransformedMessage = [\n" );
 	message.writeTo(System.out);
 	
-    return true;
+    return result;
+  }
+  
+  @Override
+  public boolean handleResponse(MessageContext messageContext, Object endpoint)
+    throws Exception
+  {
+	  System.out.println("########################VidaTransformationInterceptor handleResponse#################");
+	  SoapMessage message = (SoapMessage) messageContext.getRequest();
+	  ByteArrayOutputStream stream = new ByteArrayOutputStream();
+	  message.writeTo(stream);
+	  String input = new String(stream.toByteArray());
+	  //message.writeTo(System.out);
+	  System.out.println("\nResponselMessage = [\n" + input);
+		
+	  return super.handleResponse(messageContext, endpoint);
   }
 }
 
