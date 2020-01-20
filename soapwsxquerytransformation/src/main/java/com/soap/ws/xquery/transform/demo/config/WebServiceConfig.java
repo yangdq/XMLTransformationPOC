@@ -1,34 +1,24 @@
-package com.soap.ws.xquery.transform.demo;
+package com.soap.ws.xquery.transform.demo.config;
 
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
-import org.springframework.ws.server.SmartEndpointInterceptor;
-import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartSoapEndpointInterceptor;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 
-import com.maximus.interceptor.VidaTransformationInterceptor;
+import com.soap.ws.xquery.transform.demo.SOAPConnector;
 
 @EnableWs
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
-	
-    @Value("${xslt.request}")
-    private String xsltRequestFile;
-    
-    @Value("${xslt.response}")
-    private String xsltResponseFile;
 		
 	@Bean
 	public ServletRegistrationBean messageDispatcherServlet(ApplicationContext context) {
@@ -89,64 +79,5 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		}
 		return mar;
 	}
-	
-//	  @Override
-//	  public void addInterceptors(List<EndpointInterceptor> interceptors) {
-////	    PayloadValidatingInterceptor validatingInterceptor = new PayloadValidatingInterceptor();
-////	    validatingInterceptor.setValidateRequest(true);
-////	    validatingInterceptor.setValidateResponse(true);
-////	    validatingInterceptor.setXsdSchema(resourceSchema());
-////	    interceptors.add(validatingInterceptor);
-//		VidaTransformationInterceptor payloadTransInterceptor = new VidaTransformationInterceptor();
-//		//PayloadTransformingInterceptor payloadTransInterceptor = new PayloadTransformingInterceptor();
-//		Resource requestXslt = new ClassPathResource(xsltRequestFile);
-//		payloadTransInterceptor.setRequestXslt(requestXslt);
-//		Resource responseXslt = new ClassPathResource(xsltResponseFile);
-//		payloadTransInterceptor.setResponseXslt(responseXslt);
-//		try{
-//			payloadTransInterceptor.afterPropertiesSet();
-//		}catch(Exception e) {
-//			throw new RuntimeException(e.getMessage());
-//		}
-//		interceptors.add(new PayloadRootSmartSoapEndpointInterceptor(
-//				payloadTransInterceptor,
-//				"http://webservice.flhk.com/FLHKWebService/1.0", "insertLetterPDFLinks2"));
-//	  }
-	  
-	  @Bean
-	  public SmartEndpointInterceptor addInsertLetterPDFLinksInterceptor() {
-			VidaTransformationInterceptor payloadGenericTransInterceptor = new VidaTransformationInterceptor();
-			//PayloadTransformingInterceptor payloadTransInterceptor = new PayloadTransformingInterceptor();
-			Resource requestXslt = new ClassPathResource("xslt/" + xsltRequestFile);
-			payloadGenericTransInterceptor.setRequestXslt(requestXslt);
-			Resource responseXslt = new ClassPathResource("xslt/" + xsltResponseFile);
-			payloadGenericTransInterceptor.setResponseXslt(responseXslt);
-			try{
-				payloadGenericTransInterceptor.afterPropertiesSet();
-			}catch(Exception e) {
-				throw new RuntimeException(e.getMessage());
-			}
-			return new PayloadRootSmartSoapEndpointInterceptor(payloadGenericTransInterceptor,
-					"http://webservice.flhk.com/FLHKWebService/1.0", 
-					"insertLetterPDFLinks");
-	  }
-	  
-	  @Bean
-	  public SmartEndpointInterceptor addVidaDocumentServiceInterceptor() {
-			VidaTransformationInterceptor payloadGenericTransInterceptor = new VidaTransformationInterceptor();
-			//PayloadTransformingInterceptor payloadTransInterceptor = new PayloadTransformingInterceptor();
-			Resource requestXslt = new ClassPathResource("xslt/" + xsltRequestFile);
-			payloadGenericTransInterceptor.setRequestXslt(requestXslt);
-			Resource responseXslt = new ClassPathResource("xslt/" + xsltResponseFile);
-			payloadGenericTransInterceptor.setResponseXslt(responseXslt);
-			try{
-				payloadGenericTransInterceptor.afterPropertiesSet();
-			}catch(Exception e) {
-				throw new RuntimeException(e.getMessage());
-			}
-			return new PayloadRootSmartSoapEndpointInterceptor(payloadGenericTransInterceptor,
-					"http://webservice.flhk.com/DocumentServices/1.0", 
-					"documentArrivedRequest");
-	  }
-	  
+	    
 }

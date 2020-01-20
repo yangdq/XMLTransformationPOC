@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo;
+package com.soap.ws.xquery.transform.demo.config;
 
 import java.util.concurrent.TimeUnit;
 
