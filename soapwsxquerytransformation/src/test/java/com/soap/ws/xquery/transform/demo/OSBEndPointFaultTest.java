@@ -1,10 +1,8 @@
 package com.soap.ws.xquery.transform.demo;
 
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
-import static org.springframework.ws.test.server.ResponseMatchers.noFault;
-import static org.springframework.ws.test.server.ResponseMatchers.serverOrReceiverFault;
-import static org.springframework.ws.test.server.ResponseMatchers.payload;
 import static org.springframework.ws.test.server.ResponseMatchers.clientOrSenderFault;
+import static org.springframework.ws.test.server.ResponseMatchers.serverOrReceiverFault;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -46,7 +44,7 @@ public class OSBEndPointFaultTest {
     }
 
     @Test
-    public void processInsertLetterPdfLinksRequest_Success() throws IOException {
+    public void processInsertLetterPdfLinksRequest_ServerFault() throws IOException {
         Source requestPayload = new StringSource(
                 "<ns:insertLetterPDFLinks xmlns:ns=\"http://webservice.flhk.com/FLHKWebService/1.0\">" +
                 "<transactionId>10000000000000004</transactionId>" + 
@@ -66,6 +64,31 @@ public class OSBEndPointFaultTest {
         mockClient
                 .sendRequest(withPayload(requestPayload))
                 .andExpect(serverOrReceiverFault())
+                .andExpect(ResponseMatchers
+                        .xpath("/SOAP-ENV:Fault/faultstring",namespaces).exists());
+    }
+    
+    @Test
+    public void processInsertLetterPdfLinksRequest_ClientFault() throws IOException {
+        Source requestPayload = new StringSource(
+                "<ns:insertLetterPDFLinks xmlns:ns=\"http://webservice.flhk.com/FLHKWebService/1.0\">" +
+                "<transactionId2222>10000000000000004</transactionId2222>" + 
+                "<fileName>406.pdf</fileName>" +
+                "<filePath>https://imgpd0.corp.psi/DOCUMENT/2013/12/28/8467764.pdf</filePath>" +
+                "</ns:insertLetterPDFLinks>");
+
+        Source sampleResponsePayload = new StringSource(
+        	      "     <SOAP-ENV:Fault xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">" + 
+        	      "         <faultcode>SOAP-ENV:Client</faultcode>" + 
+        	      "         <faultstring xml:lang=\"en\">Validation error</faultstring>\n" + 
+        	      "      </SOAP-ENV:Fault>");
+        
+        Map<String, String> namespaces = Collections.singletonMap("SOAP-ENV",
+                "http://schemas.xmlsoap.org/soap/envelope/");
+
+        mockClient
+                .sendRequest(withPayload(requestPayload))
+                .andExpect(clientOrSenderFault())
                 .andExpect(ResponseMatchers
                         .xpath("/SOAP-ENV:Fault/faultstring",namespaces).exists());
     }
