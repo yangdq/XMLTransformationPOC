@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo;
+package com.maximus.osbtransform.endpoint;
 
 import static org.springframework.ws.test.server.RequestCreators.withPayload;
 import static org.springframework.ws.test.server.ResponseMatchers.clientOrSenderFault;
@@ -27,7 +27,7 @@ import org.springframework.xml.transform.StringSource;
  *
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, 
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, 
 properties = { "vida.letterWSServiceEndpoint=http://localhost:7001/notavailable",
 		"vida.loggerWSServiceEndpoint=http://localhost:7001/notavailable",
 		"vida.documentWSServiceEndpoint=http://localhost:7001/notavailable"})
