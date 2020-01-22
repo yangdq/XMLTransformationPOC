@@ -20,8 +20,12 @@ import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinksResponse;
 import com.soap.ws.xquery.transform.demo.async.AsyncService;
 import com.soap.ws.xquery.transform.demo.resource.VidaSOAPService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Endpoint
+@Slf4j
 public class OsbEndpoint {
+	
 //	@Autowired
 //	FileService fileService;
 
@@ -70,6 +74,7 @@ public class OsbEndpoint {
 		logMsgRequest.setTransactionName("StateAccountTransfer");
 		logMsgRequest.setTransactionId(transactionId);	
 		
+		log.trace("\nrequestPostToWSAuditLog\n" + requestPayloadStr);
 		asyncService.callVidaLoggerEndPoint(logMsgRequest);
 				
 //		Future<LogMessageResponse> asyncResponse = asyncService.callVidaLoggerEndPointWithResponse(logMsgRequest);

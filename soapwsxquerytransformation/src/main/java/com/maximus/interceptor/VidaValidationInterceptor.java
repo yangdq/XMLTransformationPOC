@@ -12,7 +12,12 @@ import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.soap.SoapMessage;
 import org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor;
 
+import com.soap.ws.xquery.transform.demo.endpoint.OsbEndpoint;
+
+import lombok.extern.slf4j.Slf4j;
+
 @Component
+@Slf4j
 public class VidaValidationInterceptor extends PayloadValidatingInterceptor
 {
   private static final Log logger = LogFactory.getLog(VidaValidationInterceptor.class);
@@ -32,7 +37,7 @@ public class VidaValidationInterceptor extends PayloadValidatingInterceptor
   @Override
   public boolean handleRequest(MessageContext messageContext, Object endpoint)
   {
-		System.out.println("\n########################VidaValidationInterceptor handleRequest#################");
+		log.info("\n########################VidaValidationInterceptor handleRequest#################");
 		SoapMessage message = (SoapMessage) messageContext.getRequest();
 		StringWriter sr = new StringWriter();
 		ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -40,7 +45,7 @@ public class VidaValidationInterceptor extends PayloadValidatingInterceptor
 		message.writeTo(stream);
 		String input = new String(stream.toByteArray());
 		//message.writeTo(System.out);
-		System.out.println("\nOriginalMessage = [\n" + input);
+		log.debug("\nOriginalMessage = [\n" + input);
 			
 	    return super.handleRequest(messageContext, endpoint);
 	}catch(Exception e) {
@@ -52,14 +57,14 @@ public class VidaValidationInterceptor extends PayloadValidatingInterceptor
   @Override
   public boolean handleResponse(MessageContext messageContext, Object endpoint)
   {
-	  System.out.println("########################VidaValidationInterceptor handleResponse#################");
+	  log.info("########################VidaValidationInterceptor handleResponse#################");
 	  SoapMessage message = (SoapMessage) messageContext.getRequest();
 	  ByteArrayOutputStream stream = new ByteArrayOutputStream();
 	  try {
 		  message.writeTo(stream);
 		  String input = new String(stream.toByteArray());
 		  //message.writeTo(System.out);
-		  System.out.println("\nResponselMessage = [\n" + input);
+		  log.debug("\nResponselMessage = [\n" + input);
 			
 		  return super.handleResponse(messageContext, endpoint);
 	  }catch(Exception e) {

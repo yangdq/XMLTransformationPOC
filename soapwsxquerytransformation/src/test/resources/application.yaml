@@ -1,0 +1,17 @@
+server:
+  port: 8090
+
+xslt:
+  request: pdfLinkRequest.xslt
+  response: pdfLinkResponse.xslt
+  
+  
+logging:
+  level:
+    org:
+      springframework:
+        web: ERROR  
+vida:
+  letterWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/LettersManagement/LetterManagerWSService
+  loggerWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/commonServices/VidaWSLoggerWS        
+  documentWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/inboundDocManagement/InboundDocManagerWS
