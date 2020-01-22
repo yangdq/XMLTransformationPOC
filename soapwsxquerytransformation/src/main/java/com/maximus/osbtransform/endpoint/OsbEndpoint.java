@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo.endpoint;
+package com.maximus.osbtransform.endpoint;
 
 import java.io.StringWriter;
 
@@ -11,14 +11,14 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import com.maximus.osbtransform.service.VidaSOAPService;
+import com.maximus.osbtransform.service.async.AsyncService;
 import com.psi.vida.logging.ws.services.LogMessage;
 import com.psi.vida.logging.ws.services.WsAuditStatusEnum;
 import com.psi.vida.services.documentservices._1.DocumentArrived;
 import com.psi.vida.services.documentservices._1.DocumentArrivedResponse;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinksResponse;
-import com.soap.ws.xquery.transform.demo.async.AsyncService;
-import com.soap.ws.xquery.transform.demo.resource.VidaSOAPService;
 
 import lombok.extern.slf4j.Slf4j;
 

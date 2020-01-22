@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo.resource;
+package com.maximus.osbtransform.service;
 
 import java.io.IOException;
 
@@ -9,11 +9,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.XmlMappingException;
 import org.springframework.stereotype.Service;
 
+import com.maximus.osbtransform.soapclient.SOAPConnector;
 import com.psi.vida.services.documentservices._1.DocumentArrived;
 import com.psi.vida.services.documentservices._1.DocumentArrivedResponse;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinksResponse;
-import com.soap.ws.xquery.transform.demo.SOAPConnector;
 
 @Service
 public class VidaSOAPService {

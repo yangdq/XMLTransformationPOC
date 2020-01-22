@@ -1,16 +1,12 @@
-package com.maximus.interceptor;
+package com.maximus.osbtransform.interceptor;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor;
 
-import com.maximus.interceptor.util.SoapUtil;
+import com.maximus.osbtransform.interceptor.util.SoapUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Component
 @Slf4j
 public class VidaValidationInterceptor extends PayloadValidatingInterceptor
 {

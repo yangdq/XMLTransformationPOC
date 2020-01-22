@@ -1,14 +1,13 @@
-package com.maximus.interceptor;
+package com.maximus.osbtransform.interceptor;
 
-import org.springframework.stereotype.Component;
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.endpoint.interceptor.PayloadTransformingInterceptor;
 
-import com.maximus.interceptor.util.SoapUtil;
+import com.maximus.osbtransform.interceptor.util.SoapUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Component
+
 @Slf4j
 public class VidaTransformationInterceptor extends PayloadTransformingInterceptor
 {

@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo.config;
+package com.maximus.osbtransform.config;
 
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
@@ -14,7 +14,7 @@ import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 
-import com.soap.ws.xquery.transform.demo.SOAPConnector;
+import com.maximus.osbtransform.soapclient.SOAPConnector;
 
 @EnableWs
 @Configuration

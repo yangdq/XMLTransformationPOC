@@ -1,8 +1,7 @@
-package com.maximus.interceptor.util;
+package com.maximus.osbtransform.interceptor.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.StringWriter;
 
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.soap.SoapMessage;
@@ -22,7 +21,6 @@ public class SoapUtil {
 	  }
 	  
 	  public static String convertSoapMsgToString(SoapMessage message) throws IOException{
-			StringWriter sr = new StringWriter();
 			ByteArrayOutputStream stream = new ByteArrayOutputStream();
 			message.writeTo(stream);
 			String soapString = new String(stream.toByteArray());	

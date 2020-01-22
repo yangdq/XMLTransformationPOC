@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo.config;
+package com.maximus.osbtransform.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -14,12 +14,11 @@ import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartS
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
-import com.maximus.interceptor.VidaTransformationInterceptor;
-import com.maximus.interceptor.VidaValidationInterceptor;
+import com.maximus.osbtransform.interceptor.VidaTransformationInterceptor;
+import com.maximus.osbtransform.interceptor.VidaValidationInterceptor;
 
 @EnableWs
 @Configuration
-@Order
 public class InterceptorsConfig extends WsConfigurerAdapter {
 	
     @Value("${xslt.request}")
@@ -28,7 +27,7 @@ public class InterceptorsConfig extends WsConfigurerAdapter {
     @Value("${xslt.response}")
     private String xsltResponseFile;
     
-    private static final String SCHEMA_LOCATION = "wsdl/schemas/";
+    //private static final String SCHEMA_LOCATION = "wsdl/schemas/";
 	
 //	  @Override
 //	  public void addInterceptors(List<EndpointInterceptor> interceptors) {

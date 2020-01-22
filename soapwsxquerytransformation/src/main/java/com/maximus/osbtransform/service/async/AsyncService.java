@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo.async;
+package com.maximus.osbtransform.service.async;
 
 import java.io.IOException;
 import java.util.concurrent.Future;
@@ -12,9 +12,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
+import com.maximus.osbtransform.soapclient.SOAPConnector;
 import com.psi.vida.logging.ws.services.LogMessage;
 import com.psi.vida.logging.ws.services.LogMessageResponse;
-import com.soap.ws.xquery.transform.demo.SOAPConnector;
 
 @Service
 public class AsyncService {
@@ -28,15 +28,13 @@ public class AsyncService {
     @Async
 	public void callVidaLoggerEndPoint(LogMessage logMessageRequest) throws XmlMappingException, IOException, JAXBException {
 
-		javax.xml.bind.JAXBElement<LogMessageResponse> jaxbElement = (javax.xml.bind.JAXBElement<LogMessageResponse>) connector.callWebService(
+    	connector.callWebService(
 				loggerWSServiceEndpoint,
 				logMessageRequest);
-
-		LogMessageResponse logMessageVidaResponse = (LogMessageResponse) jaxbElement
-				.getValue();
 	}
     
     @Async
+	@SuppressWarnings("unchecked")
 	public Future<LogMessageResponse> callVidaLoggerEndPointWithResponse(LogMessage logMessageRequest) 
 			throws XmlMappingException, IOException, JAXBException {
 

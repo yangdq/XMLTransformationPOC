@@ -1,15 +1,15 @@
-package com.soap.ws.xquery.transform.demo;
+package com.maximus.osbtransform;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.soap.ws")
-public class DemoApplication {
+@ComponentScan(basePackages = "com.maximus.osbtransform")
+public class OSBTransformationApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(OSBTransformationApplication.class, args);
 	}
 
 }

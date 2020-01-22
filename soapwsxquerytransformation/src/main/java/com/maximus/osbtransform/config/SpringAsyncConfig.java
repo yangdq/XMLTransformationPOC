@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo.config;
+package com.maximus.osbtransform.config;
 
 import java.util.concurrent.Executor;
 
@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import com.soap.ws.xquery.transform.demo.async.CustomAsyncExceptionHandler;
+import com.maximus.osbtransform.service.async.CustomAsyncExceptionHandler;
 
 @Configuration
 @EnableAsync

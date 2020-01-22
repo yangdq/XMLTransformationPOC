@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo;
+package com.maximus.osbtransform.soapclient;
 
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 

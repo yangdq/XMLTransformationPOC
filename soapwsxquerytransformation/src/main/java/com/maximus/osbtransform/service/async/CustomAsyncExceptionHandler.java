@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo.async;
+package com.maximus.osbtransform.service.async;
 
 import java.lang.reflect.Method;
 

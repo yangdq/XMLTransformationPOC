@@ -1,4 +1,4 @@
-package com.soap.ws.xquery.transform.demo.resource;
+package com.maximus.osbtransform.service;
 
 import java.io.File;
 import java.io.FileInputStream;
