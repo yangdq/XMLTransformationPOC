@@ -1,14 +1,10 @@
 package com.maximus.interceptor;
 
-import java.io.ByteArrayOutputStream;
-import java.io.StringWriter;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.endpoint.interceptor.PayloadTransformingInterceptor;
-import org.springframework.ws.soap.SoapMessage;
+
+import com.maximus.interceptor.util.SoapUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -16,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class VidaTransformationInterceptor extends PayloadTransformingInterceptor
 {
-  private static final Log logger = LogFactory.getLog(VidaTransformationInterceptor.class);
+//  private static final Log logger = LogFactory.getLog(VidaTransformationInterceptor.class);
 
   
 //  @Override
@@ -34,21 +30,14 @@ public class VidaTransformationInterceptor extends PayloadTransformingIntercepto
   public boolean handleRequest(MessageContext messageContext, Object endpoint)
     throws Exception
   {
-	log.info("\n########################VidaTransformationInterceptor handleRequest#################");
-	SoapMessage message = (SoapMessage) messageContext.getRequest();
-	StringWriter sr = new StringWriter();
-	ByteArrayOutputStream stream = new ByteArrayOutputStream();
-	message.writeTo(stream);
-	String input = new String(stream.toByteArray());
-	//message.writeTo(System.out);
-	log.debug("\nOriginalMessage = [\n" + input);
+	log.info("\n########################VidaTransformationInterceptor handleRequest#################\n");
+	log.debug("\nOrignal Request Message = [\n");
+	SoapUtil.debugSoapMessage(messageContext);
 		
-   boolean result = super.handleRequest(messageContext, endpoint);
+    boolean result = super.handleRequest(messageContext, endpoint);
     
-	message = (SoapMessage) messageContext.getRequest();
-	log.debug("\nTransformedMessage = [\n" );
-	message.writeTo(System.out);
-	
+    log.debug("\nTransformed Request Message = [\n");
+    SoapUtil.debugSoapMessage(messageContext);
     return result;
   }
   
@@ -57,15 +46,11 @@ public class VidaTransformationInterceptor extends PayloadTransformingIntercepto
     throws Exception
   {
 	  log.info("########################VidaTransformationInterceptor handleResponse#################");
-	  SoapMessage message = (SoapMessage) messageContext.getRequest();
-	  ByteArrayOutputStream stream = new ByteArrayOutputStream();
-	  message.writeTo(stream);
-	  String input = new String(stream.toByteArray());
-	  //message.writeTo(System.out);
-	  log.debug("\nResponselMessage = [\n" + input);
-		
+	  log.debug("\nResponselMessage = [\n");
+	  SoapUtil.debugSoapMessage(messageContext);		
 	  return super.handleResponse(messageContext, endpoint);
   }
+  
 }
 
 

@@ -1,18 +1,12 @@
 package com.maximus.interceptor;
 
-import java.io.ByteArrayOutputStream;
-import java.io.StringWriter;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.core.Ordered;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.ws.context.MessageContext;
-import org.springframework.ws.soap.SoapMessage;
 import org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor;
 
-import com.soap.ws.xquery.transform.demo.endpoint.OsbEndpoint;
+import com.maximus.interceptor.util.SoapUtil;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,15 +31,10 @@ public class VidaValidationInterceptor extends PayloadValidatingInterceptor
   @Override
   public boolean handleRequest(MessageContext messageContext, Object endpoint)
   {
-		log.info("\n########################VidaValidationInterceptor handleRequest#################");
-		SoapMessage message = (SoapMessage) messageContext.getRequest();
-		StringWriter sr = new StringWriter();
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		try {
-		message.writeTo(stream);
-		String input = new String(stream.toByteArray());
-		//message.writeTo(System.out);
-		log.debug("\nOriginalMessage = [\n" + input);
+	log.info("\n########################VidaValidationInterceptor handleRequest#################");
+	try {
+		log.debug("\nRequest Message = [\n");
+		SoapUtil.debugSoapMessage(messageContext);
 			
 	    return super.handleRequest(messageContext, endpoint);
 	}catch(Exception e) {
@@ -57,20 +46,16 @@ public class VidaValidationInterceptor extends PayloadValidatingInterceptor
   @Override
   public boolean handleResponse(MessageContext messageContext, Object endpoint)
   {
-	  log.info("########################VidaValidationInterceptor handleResponse#################");
-	  SoapMessage message = (SoapMessage) messageContext.getRequest();
-	  ByteArrayOutputStream stream = new ByteArrayOutputStream();
-	  try {
-		  message.writeTo(stream);
-		  String input = new String(stream.toByteArray());
-		  //message.writeTo(System.out);
-		  log.debug("\nResponselMessage = [\n" + input);
+	log.info("########################VidaValidationInterceptor handleResponse#################");
+	try {
+		log.debug("\nResponse Message = [\n");
+		SoapUtil.debugSoapMessage(messageContext);
 			
-		  return super.handleResponse(messageContext, endpoint);
-	  }catch(Exception e) {
-			e.printStackTrace();
-			throw new RuntimeException(e.getMessage());
-		}
+		return super.handleResponse(messageContext, endpoint);
+	}catch(Exception e) {
+		e.printStackTrace();
+		throw new RuntimeException(e.getMessage());
+	}
   }
 }
 
