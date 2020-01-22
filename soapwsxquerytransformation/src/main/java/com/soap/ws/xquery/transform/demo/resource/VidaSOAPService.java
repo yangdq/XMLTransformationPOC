@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.oxm.XmlMappingException;
 import org.springframework.stereotype.Service;
 
-import com.psi.vida.logging.ws.services.LogMessage;
-import com.psi.vida.logging.ws.services.LogMessageResponse;
 import com.psi.vida.services.documentservices._1.DocumentArrived;
 import com.psi.vida.services.documentservices._1.DocumentArrivedResponse;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
@@ -18,7 +16,7 @@ import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinksResponse;
 import com.soap.ws.xquery.transform.demo.SOAPConnector;
 
 @Service
-public class VidaService {
+public class VidaSOAPService {
 
 	@Autowired
 	SOAPConnector connector;
@@ -26,8 +24,8 @@ public class VidaService {
     @Value("${vida.letterWSServiceEndpoint}")
     private String letterWSServiceEndpoint;
     
-    @Value("${vida.loggerWSServiceEndpoint}")
-    private String loggerWSServiceEndpoint;
+//    @Value("${vida.loggerWSServiceEndpoint}")
+//    private String loggerWSServiceEndpoint;
     
     @Value("${vida.documentWSServiceEndpoint}")
     private String documentWSServiceEndpoint;
@@ -56,16 +54,16 @@ public class VidaService {
 		return documentArrivedVidaResponse;
 	}
 
-	public LogMessageResponse callVidaLoggerEndPoint(LogMessage logMessageRequest) throws XmlMappingException, IOException, JAXBException {
-
-		javax.xml.bind.JAXBElement<LogMessageResponse> jaxbElement = (javax.xml.bind.JAXBElement<LogMessageResponse>) connector.callWebService(
-				loggerWSServiceEndpoint,
-				logMessageRequest);
-
-		LogMessageResponse logMessageVidaResponse = (LogMessageResponse) jaxbElement
-				.getValue();
-		
-		return logMessageVidaResponse;
-	}
+//	public LogMessageResponse callVidaLoggerEndPoint(LogMessage logMessageRequest) throws XmlMappingException, IOException, JAXBException {
+//
+//		javax.xml.bind.JAXBElement<LogMessageResponse> jaxbElement = (javax.xml.bind.JAXBElement<LogMessageResponse>) connector.callWebService(
+//				loggerWSServiceEndpoint,
+//				logMessageRequest);
+//
+//		LogMessageResponse logMessageVidaResponse = (LogMessageResponse) jaxbElement
+//				.getValue();
+//		
+//		return logMessageVidaResponse;
+//	}
 
 }

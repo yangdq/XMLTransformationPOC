@@ -12,22 +12,24 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.psi.vida.logging.ws.services.LogMessage;
-import com.psi.vida.logging.ws.services.LogMessageResponse;
 import com.psi.vida.logging.ws.services.WsAuditStatusEnum;
 import com.psi.vida.services.documentservices._1.DocumentArrived;
 import com.psi.vida.services.documentservices._1.DocumentArrivedResponse;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinksResponse;
-import com.soap.ws.xquery.transform.demo.resource.FileService;
-import com.soap.ws.xquery.transform.demo.resource.VidaService;
+import com.soap.ws.xquery.transform.demo.async.AsyncService;
+import com.soap.ws.xquery.transform.demo.resource.VidaSOAPService;
 
 @Endpoint
 public class OsbEndpoint {
-	@Autowired
-	FileService fileService;
+//	@Autowired
+//	FileService fileService;
 
 	@Autowired
-	VidaService vidaService;
+	VidaSOAPService vidaSOAPService;
+	
+	@Autowired
+	AsyncService asyncService;
 	  
 	@Autowired
 	Marshaller jaxbMarshaller;
@@ -38,7 +40,7 @@ public class OsbEndpoint {
 			@RequestPayload InsertLetterPDFLinks insertLetterPdfLinksOsbRequest, MessageContext mc)
 			throws Exception {
 		
-		InsertLetterPDFLinksResponse response = vidaService.callVidaPDFLinksEndPoint(insertLetterPdfLinksOsbRequest);
+		InsertLetterPDFLinksResponse response = vidaSOAPService.callVidaPDFLinksEndPoint(insertLetterPdfLinksOsbRequest);
 		// WS Call for request logging
 		requestPostToWSAuditLog(insertLetterPdfLinksOsbRequest, insertLetterPdfLinksOsbRequest.getTransactionId());		
 		return response;
@@ -50,7 +52,7 @@ public class OsbEndpoint {
 			@RequestPayload DocumentArrived documentArrivedRequest, MessageContext mc)
 			throws Exception {
 		
-		DocumentArrivedResponse response = vidaService.callVidaDocumentEndPoint(documentArrivedRequest);
+		DocumentArrivedResponse response = vidaSOAPService.callVidaDocumentEndPoint(documentArrivedRequest);
 		// WS Call for request logging
 		requestPostToWSAuditLog(documentArrivedRequest, null);				
 		return response;
@@ -67,9 +69,28 @@ public class OsbEndpoint {
 		logMsgRequest.setStatus(WsAuditStatusEnum.REQUEST_RECEIVED);
 		logMsgRequest.setTransactionName("StateAccountTransfer");
 		logMsgRequest.setTransactionId(transactionId);	
+		
+		asyncService.callVidaLoggerEndPoint(logMsgRequest);
 				
-		LogMessageResponse logResponse = vidaService.callVidaLoggerEndPoint(logMsgRequest);
-		System.out.println("Log server response "+ logResponse.toString());		
+//		Future<LogMessageResponse> asyncResponse = asyncService.callVidaLoggerEndPointWithResponse(logMsgRequest);
+//		try {
+//			LogMessageResponse logResponse = asyncResponse.get(5, TimeUnit.SECONDS);
+//            System.out.println("Result from asynchronous process - " + logResponse);
+//    		System.out.println("Log server response "+ logResponse.toString());	
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//	    while (true) {
+//	        if (asyncResponse.isDone()) {
+//	        	LogMessageResponse logResponse = asyncResponse.get(5, TimeUnit.SECONDS);
+//	            System.out.println("Result from asynchronous process - " + logResponse);
+//	    		System.out.println("Log server response "+ logResponse.toString());		
+//	            break;
+//	        }
+//	        System.out.println("\nWaiting Asynchronous call to complete. ");
+//	        System.out.println("\n....................................... ");
+//	        Thread.sleep(1000);
+//	    }
 	}
 
 }
