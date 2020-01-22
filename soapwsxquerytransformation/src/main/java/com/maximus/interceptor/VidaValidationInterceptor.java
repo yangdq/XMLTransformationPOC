@@ -14,9 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class VidaValidationInterceptor extends PayloadValidatingInterceptor
 {
-  private static final Log logger = LogFactory.getLog(VidaValidationInterceptor.class);
-
-  
+//  private static final Log logger = LogFactory.getLog(VidaValidationInterceptor.class);
+	
 //  @Override
 //  public boolean shouldIntercept(MessageContext messageContext, Object endpoint) {
 //	  MethodEndpoint me = (MethodEndpoint) endpoint;
