@@ -27,7 +27,7 @@ public class InterceptorsConfig extends WsConfigurerAdapter {
     @Value("${xslt.response}")
     private String xsltResponseFile;
     
-    //private static final String SCHEMA_LOCATION = "wsdl/schemas/";
+    private static final String SCHEMA_LOCATION = "wsdl/schemas/";
 	
 //	  @Override
 //	  public void addInterceptors(List<EndpointInterceptor> interceptors) {
@@ -105,7 +105,7 @@ public class InterceptorsConfig extends WsConfigurerAdapter {
 	  
 	  @Bean
 	  public XsdSchema insertLetterPOFLinksSchema() {
-	    return new SimpleXsdSchema(new ClassPathResource("wsdl/schemas/LetterManagerWSSchema.xsd"));
+	    return new SimpleXsdSchema(new ClassPathResource(SCHEMA_LOCATION + "LetterManagerWSSchema.xsd"));
 	  }
 	  
  
