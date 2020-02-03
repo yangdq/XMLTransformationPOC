@@ -46,7 +46,7 @@ public class OsbEndpoint {
 		
 		InsertLetterPDFLinksResponse response = vidaSOAPService.callVidaPDFLinksEndPoint(insertLetterPdfLinksOsbRequest);
 		// WS Call for request logging
-		requestPostToWSAuditLog(insertLetterPdfLinksOsbRequest, insertLetterPdfLinksOsbRequest.getTransactionId());		
+//		requestPostToWSAuditLog(insertLetterPdfLinksOsbRequest, insertLetterPdfLinksOsbRequest.getTransactionId());		
 		return response;
 	}
 	

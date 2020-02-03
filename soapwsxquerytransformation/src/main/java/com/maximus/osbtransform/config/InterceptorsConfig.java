@@ -1,5 +1,6 @@
 package com.maximus.osbtransform.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +15,10 @@ import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartS
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
+import com.maximus.osbtransform.interceptor.InsertPDFLinkLoggingInterceptor;
 import com.maximus.osbtransform.interceptor.VidaTransformationInterceptor;
 import com.maximus.osbtransform.interceptor.VidaValidationInterceptor;
+import com.maximus.osbtransform.service.async.AsyncService;
 
 @EnableWs
 @Configuration
@@ -26,6 +29,9 @@ public class InterceptorsConfig extends WsConfigurerAdapter {
     
     @Value("${xslt.response}")
     private String xsltResponseFile;
+    
+	@Autowired
+	AsyncService asyncService;	
     
     private static final String SCHEMA_LOCATION = "wsdl/schemas/";
 	
@@ -65,9 +71,20 @@ public class InterceptorsConfig extends WsConfigurerAdapter {
 	      loggingFilter.setMaxPayloadLength(64000);
 	      return loggingFilter;
 	  }
-    
+	  
 	  @Bean
 	  @Order(1)
+	  public SmartEndpointInterceptor insertLetterPDFLinksLoggingInterceptor() {
+		  InsertPDFLinkLoggingInterceptor loggingInterceptor = new InsertPDFLinkLoggingInterceptor();
+		  loggingInterceptor.setAsyncService(asyncService);
+		  
+			return new PayloadRootSmartSoapEndpointInterceptor(loggingInterceptor,
+					"http://webservice.flhk.com/FLHKWebService/1.0", 
+					"insertLetterPDFLinks");
+	  }
+    
+	  @Bean
+	  @Order(10)
 	  public SmartEndpointInterceptor insertLetterPDFLinksValidationInterceptor() {
 		    VidaValidationInterceptor validatingInterceptor = new VidaValidationInterceptor();
 		    validatingInterceptor.setValidateRequest(true);
