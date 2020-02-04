@@ -99,6 +99,7 @@
 		    <scope>test</scope>
 		</dependency>
 		<dependency>
+			<!-- @Slf4j Annotation and the injected log instance variable in any Java class -->
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
 		    <!-- version>1.18.10</version-->
