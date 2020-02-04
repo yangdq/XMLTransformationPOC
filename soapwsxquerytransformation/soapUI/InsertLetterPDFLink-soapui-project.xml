@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="9c981a8a-da1e-4a30-825e-6a9aae41871e" activeEnvironment="Default" name="insertLetterPDFLink" resourceRoot="${projectDir}" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="f182fe18-7c12-4819-88ef-479b7b4bca92" wsaVersion="NONE" name="TransformPortSoap11" type="wsdl" bindingName="{http://webservice.flhk.com/FLHKWebService/1.0}TransformPortSoap11" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/osbws/osbletterservice.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/osbws/osbletterservice.wsdl"><con:part><con:url>http://localhost:8080/osbws/osbletterservice.wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://webservice.flhk.com/FLHKWebService/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://webservice.flhk.com/FLHKWebService/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://webservice.flhk.com/FLHKWebService/1.0">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://webservice.flhk.com/FLHKWebService/1.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns0="http://webservice.flhk.com/FLHKWebService/1.0">
+      <xsd:complexType name="insertLetterPDFLinksResponse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="return" type="ns0:confirmation"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="confirmation">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+          <xsd:element minOccurs="0" name="serviceReply" type="ns0:serviceReplyEnum"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="insertLetterPDFLinks">
+        <xsd:complexContent>
+          <xsd:extension base="ns0:serviceRequest">
+            <xsd:sequence>
+              <xsd:element minOccurs="0" name="fileName" type="xsd:string"/>
+              <xsd:element minOccurs="0" name="filePath" type="xsd:string"/>
+            </xsd:sequence>
+          </xsd:extension>
+        </xsd:complexContent>
+      </xsd:complexType>
+      <xsd:element name="insertLetterPDFLinksResponse" type="ns0:insertLetterPDFLinksResponse"/>
+      <xsd:element name="insertLetterPDFLinks" type="ns0:insertLetterPDFLinks"/>
+      <xsd:simpleType name="serviceReplyEnum">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="SUCCESS"/>
+          <xsd:enumeration value="FAILURE"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="serviceRequest">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" name="transactionId" type="xsd:string"/>
+        </xsd:sequence>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="insertLetterPDFLinksResponse">
+    <wsdl:part element="tns:insertLetterPDFLinksResponse" name="insertLetterPDFLinksResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="insertLetterPDFLinks">
+    <wsdl:part element="tns:insertLetterPDFLinks" name="insertLetterPDFLinks"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TransformPort">
+    <wsdl:operation name="insertLetterPDFLinks">
+      <wsdl:input message="tns:insertLetterPDFLinks" name="insertLetterPDFLinks"></wsdl:input>
+      <wsdl:output message="tns:insertLetterPDFLinksResponse" name="insertLetterPDFLinksResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TransformPortSoap11" type="tns:TransformPort">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="insertLetterPDFLinks">
+      <soap:operation soapAction=""/>
+      <wsdl:input name="insertLetterPDFLinks">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="insertLetterPDFLinksResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TransformPortService">
+    <wsdl:port binding="tns:TransformPortSoap11" name="TransformPortSoap11">
+      <soap:address location="http://localhost:8080/osbws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/osbws</con:endpoint><con:endpoint>http://localhost:8081/osbws</con:endpoint></con:endpoints><con:operation id="186026e7-f21a-42b3-a317-29ef0c5ac9ba" isOneWay="false" action="" name="insertLetterPDFLinks" bindingOperationName="insertLetterPDFLinks" type="Request-Response" outputName="insertLetterPDFLinksResponse" inputName="insertLetterPDFLinks" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="deb47e31-a68d-4ec0-956e-fb1f786fd3dd" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/osbws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://webservice.flhk.com/FLHKWebService/1.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:viewAccountData>\r
+         <transactionId>1000</transactionId>\r
+         <ns:familyAccountId>82000000</ns:familyAccountId>\r
+      </ns:viewAccountData>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservice.flhk.com/FLHKWebService/1.0/TransformPort/viewAccountData"/><con:wsrmConfig version="1.2"/></con:call><con:call id="88454cd9-bc2f-4de7-9d66-43a06c981108" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/osbws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns0="http://webservice.flhk.com/FLHKWebService/1.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns0:insertLetterPDFLinks>\r
+         <transactionId>10000000089</transactionId>
+	    <fileName>407.pdf</fileName>
+         <filePath>https://imgpd0.corp.psi/DOCUMENT/2013/12/28/8467764.pdf</filePath>
+      </ns0:insertLetterPDFLinks>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://webservice.flhk.com/FLHKWebService/1.0/TransformPort/insertLetterPDFLinks"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
