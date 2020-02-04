@@ -5,10 +5,15 @@
   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DocumentServices"
   targetNamespace="http://webservice.flhk.com/DocumentServices/1.0">
   <wsdl:types>
+  
     <xsd:schema>
       <xsd:import namespace="http://webservice.flhk.com/DocumentServices/1.0" schemaLocation="../schemas/DocumentServicesSchema.xsd" />
+      <xsd:import namespace="http://webservice.flhk.com/AccountServices/1.0"  schemaLocation="../schemas/AccountServicesWSSchema.xsd" />
     </xsd:schema>
-    
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://webservice.flhk.com/DocumentServices/1.0">
+      <xsd:element name="accountSearchRequest" type="as:accountSearch"></xsd:element>
+      <xsd:element name="accountSearchResponse" type="as:accountSearchResponse"></xsd:element>
+    </xsd:schema>    
   </wsdl:types>
   <wsdl:message name="DocumentArrivedRequest">
     <wsdl:part name="parameters" element="ds:documentArrivedRequest"></wsdl:part>
@@ -16,12 +21,24 @@
   <wsdl:message name="DocumentArrivedResponse">
     <wsdl:part name="parameters" element="ds:documentArrivedResponse"></wsdl:part>
   </wsdl:message>
+ <wsdl:message name="AccountSearchRequest">
+    <wsdl:part name="parameters" element="ds:accountSearchRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AccountSearchResponse">
+    <wsdl:part name="parameters" element="ds:accountSearchResponse"></wsdl:part>
+  </wsdl:message>  
+  
   <wsdl:portType name="DocumentServices">
     <wsdl:operation name="DocumentArrived">
       <wsdl:input message="ds:DocumentArrivedRequest"></wsdl:input>
       <wsdl:output message="ds:DocumentArrivedResponse"></wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AccountSearch">
+      <wsdl:input message="ds:AccountSearchRequest"></wsdl:input>
+      <wsdl:output message="ds:AccountSearchResponse"></wsdl:output>
+    </wsdl:operation>    
   </wsdl:portType>
+  
   <wsdl:binding name="DocumentServicesSOAP" type="ds:DocumentServices">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="DocumentArrived">
@@ -33,6 +50,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="AccountSearch">
+      <soap:operation soapAction="http://webservice.flhk.com/DocumentServices/1.0/DocumentArrived" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>    
   </wsdl:binding>
   <wsdl:service name="DocumentServices">
     <wsdl:port binding="ds:DocumentServicesSOAP" name="DocumentServicesSOAP">

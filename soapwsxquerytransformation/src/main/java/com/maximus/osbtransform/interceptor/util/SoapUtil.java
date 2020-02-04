@@ -16,12 +16,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SoapUtil {
 
-	  public static void debugSoapMessage(MessageContext messageContext) throws IOException {
+	  public static void debugSoapMessage(SoapMessage message) throws IOException {
 		    if(log.isDebugEnabled()) {
-				SoapMessage message = (SoapMessage) messageContext.getRequest();
+		    	//SoapMessage message = (SoapMessage) messageContext.getRequest();
 				String soapMsg = convertSoapMsgToString(message);
 				//message.writeTo(System.out);
-				log.debug("\nOriginalMessage = [\n" + soapMsg);
+				log.debug("\nMessage = [\n" + soapMsg);
 		    }	  
 	  }
 	  

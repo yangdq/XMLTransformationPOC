@@ -64,7 +64,8 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
 		marshaller.setContextPaths("com.psi.vida.logging.ws.services", 
 				"com.psi.vida.services.lettermanagement._1", 
-				"com.psi.vida.services.documentservices._1");
+				"com.psi.vida.services.documentservices._1",
+				"com.psi.vida.services.clientmanagement._1");
 		return marshaller;
 	}
 	

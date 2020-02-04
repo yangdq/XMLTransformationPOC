@@ -146,4 +146,22 @@ public class InterceptorsConfig extends WsConfigurerAdapter {
 					"documentArrivedRequest");
 	  }
 	  
+	  @Bean
+	  @Order(100)
+	  public SmartEndpointInterceptor addVidaAccountSearchInterceptor() {
+			VidaTransformationInterceptor payloadGenericTransInterceptor = new VidaTransformationInterceptor();
+			//PayloadTransformingInterceptor payloadTransInterceptor = new PayloadTransformingInterceptor();
+			Resource requestXslt = new ClassPathResource("xslt/" + xsltRequestFile);
+			payloadGenericTransInterceptor.setRequestXslt(requestXslt);
+			Resource responseXslt = new ClassPathResource("xslt/" + xsltResponseFile);
+			payloadGenericTransInterceptor.setResponseXslt(responseXslt);
+			try{
+				payloadGenericTransInterceptor.afterPropertiesSet();
+			}catch(Exception e) {
+				throw new RuntimeException(e.getMessage());
+			}
+			return new PayloadRootSmartSoapEndpointInterceptor(payloadGenericTransInterceptor,
+					"http://webservice.flhk.com/DocumentServices/1.0", 
+					"accountSearchRequest");
+	  }
 }

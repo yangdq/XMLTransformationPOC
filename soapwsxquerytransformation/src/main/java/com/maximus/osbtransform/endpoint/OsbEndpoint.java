@@ -15,6 +15,8 @@ import com.maximus.osbtransform.service.VidaSOAPService;
 import com.maximus.osbtransform.service.async.AsyncService;
 import com.psi.vida.logging.ws.services.LogMessage;
 import com.psi.vida.logging.ws.services.WsAuditStatusEnum;
+import com.psi.vida.services.clientmanagement._1.AccountSearch;
+import com.psi.vida.services.clientmanagement._1.AccountSearchResponse;
 import com.psi.vida.services.documentservices._1.DocumentArrived;
 import com.psi.vida.services.documentservices._1.DocumentArrivedResponse;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
@@ -25,9 +27,6 @@ import lombok.extern.slf4j.Slf4j;
 @Endpoint
 @Slf4j
 public class OsbEndpoint {
-	
-//	@Autowired
-//	FileService fileService;
 
 	@Autowired
 	VidaSOAPService vidaSOAPService;
@@ -59,6 +58,18 @@ public class OsbEndpoint {
 		DocumentArrivedResponse response = vidaSOAPService.callVidaDocumentEndPoint(documentArrivedRequest);
 		// WS Call for request logging
 		requestPostToWSAuditLog(documentArrivedRequest, null);				
+		return response;
+	}
+	
+	@PayloadRoot(namespace = "http://webservice.flhk.com/DocumentServices/1.0", localPart = "accountSearchRequest")
+	@ResponsePayload
+	public AccountSearchResponse processAccountSeearchOsbRequest(
+			@RequestPayload AccountSearch accountSearchRequest, MessageContext mc)
+			throws Exception {
+		
+		AccountSearchResponse response = vidaSOAPService.callClientManagmentEndPoint(accountSearchRequest);
+		// WS Call for request logging
+		requestPostToWSAuditLog(accountSearchRequest, null);				
 		return response;
 	}
 	

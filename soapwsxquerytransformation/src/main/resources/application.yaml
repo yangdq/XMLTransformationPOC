@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8080
 xslt:
   request: pdfLinkRequest.xslt
   response: pdfLinkResponse.xslt
@@ -14,15 +14,12 @@ spring:  profiles: development
     type: simple
   
   activemq:    in-memory: true
-logging:
-  level:
-    org:
-      springframework:
-        web: DEBUG  
+ 
 vida:
   letterWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/LettersManagement/LetterManagerWSService
   loggerWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/commonServices/VidaWSLoggerWS        
   documentWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/inboundDocManagement/InboundDocManagerWS
+  clientManagWSServiceEndPoint: http://flcsvc01qf3.corp.psi:5001/accountManagement/ClientManagementWS
   
 ---
 spring:
@@ -32,12 +29,9 @@ spring:
   
   activemq:
     in-memory: true
-logging:
-  level:
-    org:
-      springframework:
-        web: ERROR  
+  
 vida:
   letterWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/LettersManagement/LetterManagerWSService   
   loggerWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/commonServices/VidaWSLoggerWS   
-  documentWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/inboundDocManagement/InboundDocManagerWS        
+  documentWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/inboundDocManagement/InboundDocManagerWS
+  clientManagWSServiceEndPoint: http://flcsvc01qf3.corp.psi:900/accountManagement/ClientManagementWS        

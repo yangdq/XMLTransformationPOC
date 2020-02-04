@@ -1,6 +1,7 @@
 package com.maximus.osbtransform.interceptor;
 
 import org.springframework.ws.context.MessageContext;
+import org.springframework.ws.soap.SoapMessage;
 import org.springframework.ws.soap.server.endpoint.interceptor.PayloadValidatingInterceptor;
 
 import com.maximus.osbtransform.interceptor.util.SoapUtil;
@@ -29,7 +30,7 @@ public class VidaValidationInterceptor extends PayloadValidatingInterceptor
 	log.info("\n########################VidaValidationInterceptor handleRequest#################");
 	try {
 		log.debug("\nRequest Message = [\n");
-		SoapUtil.debugSoapMessage(messageContext);
+		SoapUtil.debugSoapMessage((SoapMessage)messageContext.getRequest());
 			
 	    return super.handleRequest(messageContext, endpoint);
 	}catch(Exception e) {
@@ -44,7 +45,7 @@ public class VidaValidationInterceptor extends PayloadValidatingInterceptor
 	log.info("########################VidaValidationInterceptor handleResponse#################");
 	try {
 		log.debug("\nResponse Message = [\n");
-		SoapUtil.debugSoapMessage(messageContext);
+		SoapUtil.debugSoapMessage((SoapMessage)messageContext.getResponse());
 			
 		return super.handleResponse(messageContext, endpoint);
 	}catch(Exception e) {

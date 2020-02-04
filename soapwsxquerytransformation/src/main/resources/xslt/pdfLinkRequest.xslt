@@ -1,5 +1,5 @@
 <xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform' xmlns:ns="http://webservice.flhk.com/FLHKWebService/1.0" 
-xmlns:document="http://webservice.flhk.com/DocumentServices/1.0"> 
+xmlns:document="http://webservice.flhk.com/DocumentServices/1.0" xmlns:client="http://services.vida.psi.com/ClientManagement/1.0"> 
     <xsl:output encoding='UTF-8' indent='yes' method='xml'/>
 
     <!-- copy everything into the output -->
@@ -64,6 +64,22 @@ xmlns:document="http://webservice.flhk.com/DocumentServices/1.0">
 	        <imageRefId><xsl:value-of select = "document:documentMetadata/imageRefId"/></imageRefId>
 	        <webUploadDate><xsl:value-of select = "document:documentMetadata/webUploadDate"/></webUploadDate>
 	    </documentMetadata> 
+    </xsl:element>
+  </xsl:template>
+  
+  <xsl:template match="document:accountSearchRequest">
+    <xsl:element name="accountSearch" namespace="http://services.vida.psi.com/ClientManagement/1.0">
+	    <searchCriteria>
+            <accountNumber><xsl:value-of select = "searchCriteria/accountNumber"/></accountNumber>
+            <city><xsl:value-of select = "document:searchCriteria/city"/></city>
+            <firstName><xsl:value-of select = "document:searchCriteria/firstName"/></firstName>
+            <lastName><xsl:value-of select = "document:searchCriteria/lastName"/></lastName>
+            <line1><xsl:value-of select = "document:searchCriteria/line1"/></line1>
+            <memberType><xsl:value-of select = "document:searchCriteria/memberType"/></memberType>
+            <ssn><xsl:value-of select = "document:searchCriteria/ssn"/></ssn>
+            <webConfirmationId><xsl:value-of select = "document:searchCriteria/webConfirmationId"/></webConfirmationId>
+            <zipCode><xsl:value-of select = "document:searchCriteria/zipCode"/></zipCode>	    
+	    </searchCriteria> 
     </xsl:element>
   </xsl:template>
    

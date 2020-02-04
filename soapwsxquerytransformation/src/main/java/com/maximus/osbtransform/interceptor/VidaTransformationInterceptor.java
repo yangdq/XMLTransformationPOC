@@ -2,6 +2,7 @@ package com.maximus.osbtransform.interceptor;
 
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.endpoint.interceptor.PayloadTransformingInterceptor;
+import org.springframework.ws.soap.SoapMessage;
 
 import com.maximus.osbtransform.interceptor.util.SoapUtil;
 
@@ -31,12 +32,13 @@ public class VidaTransformationInterceptor extends PayloadTransformingIntercepto
   {
 	log.info("\n########################VidaTransformationInterceptor handleRequest#################\n");
 	log.debug("\nOrignal Request Message = [\n");
-	SoapUtil.debugSoapMessage(messageContext);
+	SoapUtil.debugSoapMessage((SoapMessage)messageContext.getRequest());
 		
     boolean result = super.handleRequest(messageContext, endpoint);
     
     log.debug("\nTransformed Request Message = [\n");
-    SoapUtil.debugSoapMessage(messageContext);
+	SoapUtil.debugSoapMessage((SoapMessage)messageContext.getRequest());
+
     return result;
   }
   
@@ -46,8 +48,13 @@ public class VidaTransformationInterceptor extends PayloadTransformingIntercepto
   {
 	  log.info("########################VidaTransformationInterceptor handleResponse#################");
 	  log.debug("\nResponselMessage = [\n");
-	  SoapUtil.debugSoapMessage(messageContext);		
-	  return super.handleResponse(messageContext, endpoint);
+		SoapUtil.debugSoapMessage((SoapMessage)messageContext.getResponse());	
+	  
+	  boolean success = super.handleResponse(messageContext, endpoint);
+	  log.debug("\nTransformed Response Message = [\n");
+		SoapUtil.debugSoapMessage((SoapMessage)messageContext.getResponse());  
+	  
+	  return success;
   }
   
 }

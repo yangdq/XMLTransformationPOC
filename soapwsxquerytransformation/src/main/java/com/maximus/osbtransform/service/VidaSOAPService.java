@@ -10,6 +10,8 @@ import org.springframework.oxm.XmlMappingException;
 import org.springframework.stereotype.Service;
 
 import com.maximus.osbtransform.soapclient.SOAPConnector;
+import com.psi.vida.services.clientmanagement._1.AccountSearch;
+import com.psi.vida.services.clientmanagement._1.AccountSearchResponse;
 import com.psi.vida.services.documentservices._1.DocumentArrived;
 import com.psi.vida.services.documentservices._1.DocumentArrivedResponse;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
@@ -29,6 +31,9 @@ public class VidaSOAPService {
     
     @Value("${vida.documentWSServiceEndpoint}")
     private String documentWSServiceEndpoint;
+    
+    @Value("${vida.clientManagWSServiceEndPoint}")
+    private String clientManagWSServiceEndPoint;    
 
 	public InsertLetterPDFLinksResponse callVidaPDFLinksEndPoint(InsertLetterPDFLinks insertLetterPdfLinksVidaRequest) throws XmlMappingException, IOException, JAXBException {
 
@@ -53,6 +58,18 @@ public class VidaSOAPService {
 		
 		return documentArrivedVidaResponse;
 	}
+	
+	public AccountSearchResponse callClientManagmentEndPoint(AccountSearch accountSearchRequest) throws XmlMappingException, IOException, JAXBException {
+
+		javax.xml.bind.JAXBElement<AccountSearchResponse> jaxbElement = (javax.xml.bind.JAXBElement<AccountSearchResponse>) connector.callWebService(
+				clientManagWSServiceEndPoint,
+				accountSearchRequest);
+
+		AccountSearchResponse accountSearchVidaResponse = (AccountSearchResponse) jaxbElement
+				.getValue();
+		
+		return accountSearchVidaResponse;
+	}	
 
 //	public LogMessageResponse callVidaLoggerEndPoint(LogMessage logMessageRequest) throws XmlMappingException, IOException, JAXBException {
 //
