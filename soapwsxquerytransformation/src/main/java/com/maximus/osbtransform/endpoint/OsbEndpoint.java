@@ -93,8 +93,6 @@ public class OsbEndpoint {
 		logMsgRequest.setCorrelationId(correlationId);
 		logMsgRequest.setObjectType("DCN");
 		logMsgRequest.setPrimaryObjectId(dcn);
-		LocalDate localDate = LocalDate.now();
-		logMsgRequest.setRequestTimestamp(DatatypeFactory.newInstance().newXMLGregorianCalendar(localDate.toString()));
 		
 		log.trace("\nrequestPostToWSAuditLog\n" + requestPayloadStr);
 		asyncService.callVidaLoggerEndPoint(logMsgRequest);
