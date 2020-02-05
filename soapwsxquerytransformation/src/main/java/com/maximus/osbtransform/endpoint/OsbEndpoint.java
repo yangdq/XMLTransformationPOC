@@ -1,8 +1,11 @@
 package com.maximus.osbtransform.endpoint;
 
 import java.io.StringWriter;
+import java.time.LocalDate;
+import java.util.UUID;
 
 import javax.xml.bind.Marshaller;
+import javax.xml.datatype.DatatypeFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.context.MessageContext;
@@ -55,9 +58,11 @@ public class OsbEndpoint {
 			@RequestPayload DocumentArrived documentArrivedRequest, MessageContext mc)
 			throws Exception {
 		
-		DocumentArrivedResponse response = vidaSOAPService.callVidaDocumentEndPoint(documentArrivedRequest);
 		// WS Call for request logging
-		requestPostToWSAuditLog(documentArrivedRequest, null);				
+		String dcn = documentArrivedRequest.getDocumentMetadata().getDocumentControlNumber();
+		requestPostToWSAuditLog(documentArrivedRequest, null, dcn);		
+		
+		DocumentArrivedResponse response = vidaSOAPService.callVidaDocumentEndPoint(documentArrivedRequest);		
 		return response;
 	}
 	
@@ -68,12 +73,13 @@ public class OsbEndpoint {
 			throws Exception {
 		
 		AccountSearchResponse response = vidaSOAPService.callClientManagmentEndPoint(accountSearchRequest);
-		// WS Call for request logging
-		requestPostToWSAuditLog(accountSearchRequest, null);				
+		// No need to log WS Call for account search only				
 		return response;
 	}
 	
-	private void requestPostToWSAuditLog(Object request, String transactionId) throws Exception {
+	private void requestPostToWSAuditLog(Object request, String transactionId, String dcn) throws Exception {
+		UUID uuid = UUID.randomUUID();
+        String correlationId = uuid.toString();
 		StringWriter sw = new StringWriter();
 		jaxbMarshaller.marshal(request, sw);
 		String requestPayloadStr = sw.toString();
@@ -83,7 +89,12 @@ public class OsbEndpoint {
 		logMsgRequest.setPayload(requestPayloadStr);
 		logMsgRequest.setStatus(WsAuditStatusEnum.REQUEST_RECEIVED);
 		logMsgRequest.setTransactionName("StateAccountTransfer");
-		logMsgRequest.setTransactionId(transactionId);	
+		logMsgRequest.setTransactionId(transactionId != null? transactionId : correlationId );	
+		logMsgRequest.setCorrelationId(correlationId);
+		logMsgRequest.setObjectType("DCN");
+		logMsgRequest.setPrimaryObjectId(dcn);
+		LocalDate localDate = LocalDate.now();
+		logMsgRequest.setRequestTimestamp(DatatypeFactory.newInstance().newXMLGregorianCalendar(localDate.toString()));
 		
 		log.trace("\nrequestPostToWSAuditLog\n" + requestPayloadStr);
 		asyncService.callVidaLoggerEndPoint(logMsgRequest);
