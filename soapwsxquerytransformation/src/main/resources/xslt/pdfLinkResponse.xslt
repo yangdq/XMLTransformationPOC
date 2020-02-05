@@ -32,16 +32,23 @@ xmlns:tns="http://services.vida.psi.com/ClientManagement/1.0">
   
   <xsl:template match="tns:accountSearchResponse">
     <xsl:element name="accountSearchResponse" namespace="http://webservice.flhk.com/DocumentServices/1.0">
-    	<xsl:for-each select = "searchResult"> 
-	    	<searchResult>
-	            <accountNumber><xsl:value-of select = "accountNumber"/></accountNumber>
-	            <webConfirmationId><xsl:value-of select = "webConfirmationId"/></webConfirmationId>
-	            <homeAddress1><xsl:value-of select = "homeAddress1"/></homeAddress1>
-	            <homeCity><xsl:value-of select = "homeCity"/></homeCity>
-	            <homeZipCode><xsl:value-of select = "homeZipCode"/></homeZipCode>
-	            <members></members>	 
-	    	</searchResult>
-	    </xsl:for-each> 
+    	<xsl:for-each-group select="searchResult" group-by="accountNumber">
+    	  <searchResult>
+    		<accountNumber><xsl:value-of select="current-grouping-key()"/></accountNumber>
+    		<webConfirmationId><xsl:value-of select = "current-group()[1]/webConfirmationId"/></webConfirmationId>
+	        <homeAddress1><xsl:value-of select = "current-group()[1]/homeAddress1"/></homeAddress1>
+	        <homeCity><xsl:value-of select = "current-group()[1]/homeCity"/></homeCity>
+	        <homeZipCode><xsl:value-of select = "current-group()[1]/homeZipCode"/></homeZipCode>
+			<xsl:for-each select="current-group()">
+				<members>
+					<firstName><xsl:value-of select="firstName"/></firstName>
+      				<lastName><xsl:value-of select="lastName"/></lastName>
+				    <ssn><xsl:value-of select="ssn"/></ssn>
+				    <memberType><xsl:value-of select="memberType"/></memberType>				
+				</members>	
+		    </xsl:for-each>
+		  </searchResult>
+	    </xsl:for-each-group> 
     </xsl:element>
   </xsl:template>  
   
