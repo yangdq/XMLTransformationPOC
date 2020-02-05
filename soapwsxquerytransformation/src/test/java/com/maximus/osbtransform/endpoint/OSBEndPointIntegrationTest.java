@@ -45,7 +45,7 @@ public class OSBEndPointIntegrationTest {
         Source requestPayload = new StringSource(
                 "<ns:insertLetterPDFLinks xmlns:ns=\"http://webservice.flhk.com/FLHKWebService/1.0\">" +
                 "<transactionId>10000000000000004</transactionId>" + 
-                "<fileName>406.pdf</fileName>" +
+                "<fileName>14.pdf</fileName>" +
                 "<filePath>https://imgpd0.corp.psi/DOCUMENT/2013/12/28/8467764.pdf</filePath>" +
                 "</ns:insertLetterPDFLinks>");
 
@@ -119,5 +119,50 @@ public class OSBEndPointIntegrationTest {
                         .xpath("/ns3:documentArrivedResponse/serviceReply/serviceReplyStatus",
                                 namespaces)
                         .exists());//.andExpect(payload(responsePayload));
+    }
+    
+    @Test
+    public void accountSearchOsbRequest_Success() throws IOException {
+        Source requestPayload = new StringSource(
+                "<ns:accountSearchRequest xmlns:ns=\"http://webservice.flhk.com/DocumentServices/1.0\">" + 
+                "         <searchCriteria>\n" + 
+                "            <accountNumber>8200000053</accountNumber>\n" + 
+                "            <zipCode></zipCode>\n" + 
+                "         </searchCriteria>\n" + 
+                " </ns:accountSearchRequest>");
+
+        Source sampleResponsePayload = new StringSource(
+        	      "<accountSearchResponse xmlns=\"http://webservice.flhk.com/DocumentServices/1.0\">\n" + 
+        	      "         <searchResult xmlns=\"\" xmlns:document=\"http://services.vida.psi.com/DocumentServices/1.0\" xmlns:ns3=\"http://services.vida.psi.com/LetterManagement/1.0\" xmlns:tns=\"http://services.vida.psi.com/ClientManagement/1.0\">\n" + 
+        	      "            <accountNumber>8200000053</accountNumber>\n" + 
+        	      "            <webConfirmationId>FLWA9655871580464038</webConfirmationId>\n" + 
+        	      "            <homeAddress1>1327 CHARLES CT</homeAddress1>\n" + 
+        	      "            <homeCity>STARKE</homeCity>\n" + 
+        	      "            <homeZipCode>32091-2006</homeZipCode>\n" + 
+        	      "            <members>\n" + 
+        	      "               <firstName>MOI</firstName>\n" + 
+        	      "               <lastName>ROY</lastName>\n" + 
+        	      "               <ssn>567567575</ssn>\n" + 
+        	      "               <memberType/>\n" + 
+        	      "            </members>\n" + 
+        	      "            <members>\n" + 
+        	      "               <firstName>RIL</firstName>\n" + 
+        	      "               <lastName>ROY</lastName>\n" + 
+        	      "               <ssn>567756485</ssn>\n" + 
+        	      "               <memberType>PARENT1</memberType>\n" + 
+        	      "            </members>\n" + 
+        	      "         </searchResult>\n" + 
+        	      "      </accountSearchResponse>\n");
+        
+        Map<String, String> namespaces = Collections.singletonMap("ns3",
+                "http://webservice.flhk.com/DocumentServices/1.0");
+
+        mockClient
+                .sendRequest(withPayload(requestPayload))
+                .andExpect(noFault())
+                .andExpect(ResponseMatchers
+                        .xpath("/ns3:accountSearchResponse/searchResult/accountNumber",
+                                namespaces).evaluatesTo("8200000053")//.exists()
+                        );//.andExpect(payload(responsePayload));
     }
 }

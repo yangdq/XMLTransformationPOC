@@ -15,3 +15,4 @@ vida:
   letterWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/LettersManagement/LetterManagerWSService
   loggerWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/commonServices/VidaWSLoggerWS        
   documentWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/inboundDocManagement/InboundDocManagerWS
+  clientManagWSServiceEndPoint: http://flcsvc01qf3.corp.psi:5001/accountManagement/ClientManagementWS
