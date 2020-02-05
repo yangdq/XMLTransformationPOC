@@ -14,6 +14,8 @@ import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import com.flhk.webservice.service._1.ServiceReply;
+import com.flhk.webservice.service._1.ServiceReplyEnum;
+import com.maximus.osbtransform.service.EmailService;
 import com.maximus.osbtransform.service.VidaSOAPService;
 import com.maximus.osbtransform.service.async.AsyncService;
 import com.psi.vida.logging.ws.services.LogMessage;
@@ -34,6 +36,9 @@ public class OsbEndpoint {
 
 	@Autowired
 	VidaSOAPService vidaSOAPService;
+	
+	@Autowired
+	EmailService emailService;
 	
 	@Autowired
 	AsyncService asyncService;
@@ -86,7 +91,11 @@ public class OsbEndpoint {
 		log.debug("emailServiceOsbRequest:\n");
 		jaxbMarshaller.marshal( emailRequest, new PrintWriter( System.out ) );
 		
+		emailService.sendEmail(emailRequest);
+		
 		ServiceReply response = new com.flhk.webservice.service._1.ObjectFactory().createServiceReply();
+		response.setMessage("Email Delivered");
+		response.setReply(ServiceReplyEnum.SUCCESS);
 		// No need to log WS Call for account search only				
 		return response;
 	}

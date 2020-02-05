@@ -7,6 +7,13 @@ xslt:
 spring:
   profiles:
     active: ${SPRING_PROFILE:development}
+
+email:
+  smtpServer:  smtpint.maxcorp.maximus
+  port:  25
+  fromAddress:  OSB@Policy-Studies.com
+  replyToAddress:  doNotReply@Policy-Studies.com
+  toAddress:  FL-SCHIPDevTeam@Policy-Studies.com
   
 ---
 spring:  profiles: development

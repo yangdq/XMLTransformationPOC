@@ -5,6 +5,12 @@ xslt:
   request: pdfLinkRequest.xslt
   response: pdfLinkResponse.xslt
   
+email:
+  smtpServer:  smtpint.maxcorp.maximus
+  port:  25
+  fromAddress:  OSB@Policy-Studies.com
+  replyToAddress:  doNotReply@Policy-Studies.com
+  toAddress:  FL-SCHIPDevTeam@Policy-Studies.com  
   
 logging:
   level:
