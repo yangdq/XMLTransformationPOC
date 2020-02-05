@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="0df97000-3675-4aef-b056-9e436f025d3b" activeEnvironment="Default" name="EmailService" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="73a58f0e-506a-4896-a434-11bd262cd70d" wsaVersion="NONE" name="EmailWebServiceSOAP" type="wsdl" bindingName="{http://services.vida.psi.com/email/1.0}EmailWebServiceSOAP" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/osbws/osbemailservice.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/osbws/osbemailservice.wsdl"><con:part><con:url>http://localhost:8080/osbws/osbemailservice.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="EmailWebService" targetNamespace="http://services.vida.psi.com/email/1.0" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:email="http://services.vida.psi.com/email/1.0" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://services.vida.psi.com/email/1.0" schemaLocation="../schemas/EmailSchema.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SendEmailRequest">
+    <wsdl:part element="email:SendEmail" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SendEmailResponse">
+    <wsdl:part element="email:SendEmailResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EmailWebService">
+    <wsdl:operation name="SendEmail">
+      <wsdl:input message="email:SendEmailRequest"/>
+      <wsdl:output message="email:SendEmailResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmailWebServiceSOAP" type="email:EmailWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SendEmail">
+      <soap:operation soapAction="http://services.vida.psi.com/email/1.0/SendEmail"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmailWebService">
+    <wsdl:port binding="email:EmailWebServiceSOAP" name="EmailWebServiceSOAP">
+      <soap:address location="http://localhost:8080/osbws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost:8080/schemas/EmailSchema.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://services.vida.psi.com/email/1.0" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:email="http://services.vida.psi.com/email/1.0" xmlns:svc="http://webservice.flhk.com/Service/1.0">
+  <xs:import namespace="http://webservice.flhk.com/Service/1.0" schemaLocation="../schemas/ServiceSchema.xsd"/>
+  <xs:element name="email" type="email:emailType"/>
+  <xs:complexType name="emailType">
+    <xs:sequence>
+      <xs:element name="to" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="cc" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="bcc" type="xs:string" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="subject" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="content" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="contentType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SendEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="email" type="email:emailType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendEmailResponse" type="svc:serviceReply"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost:8080/schemas/ServiceSchema.xsd</con:url><con:content><![CDATA[<xsd:schema targetNamespace="http://webservice.flhk.com/Service/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:svc="http://webservice.flhk.com/Service/1.0">
+  <xsd:element name="serviceReply" type="svc:serviceReply"/>
+  <xsd:complexType name="serviceReply">
+    <xsd:sequence>
+      <xsd:element name="reply" type="svc:serviceReplyEnum"/>
+      <xsd:element name="message" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="serviceReplyEnum">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="SUCCESS"/>
+      <xsd:enumeration value="FAILURE"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+</xsd:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/osbws</con:endpoint></con:endpoints><con:operation id="df7176b0-ee2c-452d-8d38-eed6062a76fc" isOneWay="false" action="http://services.vida.psi.com/email/1.0/SendEmail" name="SendEmail" bindingOperationName="SendEmail" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="6a49b479-b96a-453f-9355-41a0c664d03e" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/osbws</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns="http://services.vida.psi.com/email/1.0">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <ns:SendEmail>\r
+         <ns:email>\r
+            <ns:to>52243@maximus.com</ns:to>\r
+            <!--Optional:-->\r
+            <ns:cc></ns:cc>\r
+            <!--Optional:-->\r
+            <ns:bcc></ns:bcc>\r
+            <ns:subject>OSB Replacement Prototype Email Service</ns:subject>\r
+            <ns:content>Test the faunction to send email</ns:content>\r
+            <!--Optional:-->\r
+            <ns:contentType>text/html</ns:contentType>\r
+         </ns:email>\r
+      </ns:SendEmail>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://services.vida.psi.com/email/1.0/SendEmail"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
