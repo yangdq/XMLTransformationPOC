@@ -1,11 +1,10 @@
 package com.maximus.osbtransform.endpoint;
 
+import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.time.LocalDate;
 import java.util.UUID;
 
 import javax.xml.bind.Marshaller;
-import javax.xml.datatype.DatatypeFactory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.context.MessageContext;
@@ -14,6 +13,7 @@ import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
+import com.flhk.webservice.service._1.ServiceReply;
 import com.maximus.osbtransform.service.VidaSOAPService;
 import com.maximus.osbtransform.service.async.AsyncService;
 import com.psi.vida.logging.ws.services.LogMessage;
@@ -22,6 +22,7 @@ import com.psi.vida.services.clientmanagement._1.AccountSearch;
 import com.psi.vida.services.clientmanagement._1.AccountSearchResponse;
 import com.psi.vida.services.documentservices._1.DocumentArrived;
 import com.psi.vida.services.documentservices._1.DocumentArrivedResponse;
+import com.psi.vida.services.email._1.SendEmail;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinks;
 import com.psi.vida.services.lettermanagement._1.InsertLetterPDFLinksResponse;
 
@@ -73,6 +74,19 @@ public class OsbEndpoint {
 			throws Exception {
 		
 		AccountSearchResponse response = vidaSOAPService.callClientManagmentEndPoint(accountSearchRequest);
+		// No need to log WS Call for account search only				
+		return response;
+	}
+	
+	@PayloadRoot(namespace = "http://services.vida.psi.com/email/1.0", localPart = "SendEmail")
+	@ResponsePayload
+	public ServiceReply emailServiceOsbRequest(
+			@RequestPayload SendEmail emailRequest, MessageContext mc)
+			throws Exception {
+		log.debug("emailServiceOsbRequest:\n");
+		jaxbMarshaller.marshal( emailRequest, new PrintWriter( System.out ) );
+		
+		ServiceReply response = new com.flhk.webservice.service._1.ObjectFactory().createServiceReply();
 		// No need to log WS Call for account search only				
 		return response;
 	}

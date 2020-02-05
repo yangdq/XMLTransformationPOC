@@ -291,7 +291,42 @@
 						      </plugin> 
 						     </plugins> 							
 						</configuration>
-					</execution>																					
+					</execution>
+					
+					<execution>
+						<id>schema-generate-send-email</id>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<args> 
+						      <arg>-Xannotate</arg> 
+						      <arg>-nv</arg> 
+						     </args> 						
+							<!-- generatePackage>com.soap.ws.xquery.transformer.vidaJaxbclasses</generatePackage-->
+							<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+							<bindingDirectory>src/main/resources/</bindingDirectory> 
+							 <bindingIncludes> 
+							 	<include>emailjaxbbindings.xjb</include>
+							 </bindingIncludes> 
+							<schemaDirectory>${project.basedir}/src/main/resources/wsdl/schemas</schemaDirectory>
+							<schemaIncludes>
+								<include>EmailSchema.xsd</include>
+							</schemaIncludes>
+							<plugins> 
+						      <plugin> 
+						       <groupId>org.jvnet.jaxb2_commons</groupId> 
+						       <artifactId>jaxb2-basics</artifactId> 
+						       <version>0.6.3</version> 
+						      </plugin> 
+						      <plugin> 
+						       <groupId>org.jvnet.jaxb2_commons</groupId> 
+						       <artifactId>jaxb2-basics-annotate</artifactId> 
+						       <version>0.6.3</version> 
+						      </plugin> 
+						     </plugins> 							
+						</configuration>
+					</execution>																										
 				</executions>
 			</plugin>			
 		</plugins>		

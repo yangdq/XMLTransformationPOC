@@ -34,8 +34,13 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 	}
 	
 	@Bean(name = "osbdocumentservice")
-	public SimpleWsdl11Definition osbdocumentservices() {
+	public SimpleWsdl11Definition osbdocumentservicews() {
 		return new SimpleWsdl11Definition(new ClassPathResource("/wsdl/osbdocumentservices.wsdl"));
+	}
+	
+	@Bean(name = "osbemailservice")
+	public SimpleWsdl11Definition osbemailservicews() {
+		return new SimpleWsdl11Definition(new ClassPathResource("/wsdl/emailWebService.wsdl"));
 	}
 
 	/*
@@ -65,7 +70,9 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 		marshaller.setContextPaths("com.psi.vida.logging.ws.services", 
 				"com.psi.vida.services.lettermanagement._1", 
 				"com.psi.vida.services.documentservices._1",
-				"com.psi.vida.services.clientmanagement._1");
+				"com.psi.vida.services.clientmanagement._1",
+				"com.psi.vida.services.email._1",
+				"com.flhk.webservice.service._1");
 		return marshaller;
 	}
 	

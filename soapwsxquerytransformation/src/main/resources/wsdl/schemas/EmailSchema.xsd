@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns:email="http://services.vida.psi.com/email/1.0" 
+xmlns:svc="http://webservice.flhk.com/Service/1.0"
+targetNamespace="http://services.vida.psi.com/email/1.0" elementFormDefault="qualified">
+	<xs:import namespace="http://webservice.flhk.com/Service/1.0" schemaLocation="../schemas/ServiceSchema.xsd"/>
+	<xs:element name="email" type="email:emailType"/>
+	<xs:complexType name="emailType">
+		<xs:sequence>
+			<xs:element name="to" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="cc" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="bcc" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="subject" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="content" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="contentType" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="SendEmail">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="email" type="email:emailType"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="SendEmailResponse" type="svc:serviceReply"/>
+</xs:schema>

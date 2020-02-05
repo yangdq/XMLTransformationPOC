@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:email="http://services.vida.psi.com/email/1.0" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+name="EmailWebService" 
+targetNamespace="http://services.vida.psi.com/email/1.0">
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://services.vida.psi.com/email/1.0" schemaLocation="../schemas/EmailSchema.xsd" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="SendEmailRequest">
+    <wsdl:part element="email:SendEmail" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SendEmailResponse">
+    <wsdl:part element="email:SendEmailResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="EmailWebService">
+    <wsdl:operation name="SendEmail">
+      <wsdl:input message="email:SendEmailRequest"/>
+      <wsdl:output message="email:SendEmailResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EmailWebServiceSOAP" type="email:EmailWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="SendEmail">
+      <soap:operation soapAction="http://services.vida.psi.com/email/1.0/SendEmail"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EmailWebService">
+    <wsdl:port binding="email:EmailWebServiceSOAP" name="EmailWebServiceSOAP">
+      <soap:address location="http://localhost:8080/osbws"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
