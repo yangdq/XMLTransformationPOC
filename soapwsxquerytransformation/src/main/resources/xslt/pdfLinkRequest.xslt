@@ -71,14 +71,14 @@ xmlns:document="http://webservice.flhk.com/DocumentServices/1.0" xmlns:client="h
     <xsl:element name="accountSearch" namespace="http://services.vida.psi.com/ClientManagement/1.0">
 	    <searchCriteria>
             <accountNumber><xsl:value-of select = "searchCriteria/accountNumber"/></accountNumber>
-            <city><xsl:value-of select = "document:searchCriteria/city"/></city>
-            <firstName><xsl:value-of select = "document:searchCriteria/firstName"/></firstName>
-            <lastName><xsl:value-of select = "document:searchCriteria/lastName"/></lastName>
-            <line1><xsl:value-of select = "document:searchCriteria/line1"/></line1>
-            <memberType><xsl:value-of select = "document:searchCriteria/memberType"/></memberType>
-            <ssn><xsl:value-of select = "document:searchCriteria/ssn"/></ssn>
-            <webConfirmationId><xsl:value-of select = "document:searchCriteria/webConfirmationId"/></webConfirmationId>
-            <zipCode><xsl:value-of select = "document:searchCriteria/zipCode"/></zipCode>	    
+            <city><xsl:value-of select = "searchCriteria/city"/></city>
+            <firstName><xsl:value-of select = "searchCriteria/firstName"/></firstName>
+            <lastName><xsl:value-of select = "searchCriteria/lastName"/></lastName>
+            <line1><xsl:value-of select = "searchCriteria/line1"/></line1>
+            <memberType><xsl:value-of select = "searchCriteria/memberType"/></memberType>
+            <ssn><xsl:value-of select = "searchCriteria/ssn"/></ssn>
+            <webConfirmationId><xsl:value-of select = "searchCriteria/webConfirmationId"/></webConfirmationId>
+            <zipCode><xsl:value-of select = "searchCriteria/zipCode"/></zipCode>	    
 	    </searchCriteria> 
     </xsl:element>
   </xsl:template>
