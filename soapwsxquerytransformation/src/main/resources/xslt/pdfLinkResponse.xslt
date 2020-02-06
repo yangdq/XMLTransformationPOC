@@ -1,7 +1,8 @@
 <xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform' 
 xmlns:document="http://services.vida.psi.com/DocumentServices/1.0"
 xmlns:ns3="http://services.vida.psi.com/LetterManagement/1.0" 
-xmlns:tns="http://services.vida.psi.com/ClientManagement/1.0"> 
+xmlns:tns="http://services.vida.psi.com/ClientManagement/1.0"
+xmlns:svc="http://webservice.flhk.com/Service/1.0"> 
     <xsl:output encoding='UTF-8' indent='yes' method='xml'/>
 
   <!-- xsl:template match="*">
@@ -26,9 +27,13 @@ xmlns:tns="http://services.vida.psi.com/ClientManagement/1.0">
   
   <xsl:template match="document:documentArrivedResponse">
     <xsl:element name="{name()}" namespace="http://webservice.flhk.com/DocumentServices/1.0">
-      <xsl:apply-templates/>
+		<serviceReply xmlns="http://webservice.flhk.com/Service/1.0">
+			<serviceReplyStatus><xsl:value-of select = "serviceReply/serviceReplyStatus"/></serviceReplyStatus>
+			<message><xsl:value-of select = "serviceReply/message"/></message>
+		</serviceReply>
     </xsl:element>
   </xsl:template>  
+  
   
   <xsl:template match="tns:accountSearchResponse">
     <xsl:element name="accountSearchResponse" namespace="http://webservice.flhk.com/DocumentServices/1.0">
