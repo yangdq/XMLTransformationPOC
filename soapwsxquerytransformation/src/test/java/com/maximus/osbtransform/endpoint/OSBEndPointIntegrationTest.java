@@ -6,6 +6,7 @@ import static org.springframework.ws.test.server.ResponseMatchers.payload;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.transform.Source;
@@ -97,7 +98,7 @@ public class OSBEndPointIntegrationTest {
 
         Source sampleResponsePayload = new StringSource(
         	      "<ns3:documentArrivedResponse xmlns:ns3=\"http://webservice.flhk.com/DocumentServices/1.0\">" +
-        	         "<serviceReply>" +
+        	         "<serviceReply xmlns=\"http://webservice.flhk.com/Service/1.0\">" +
         	            "<serviceReplyStatus>FAILURE</serviceReplyStatus>" +
         	            "<message>EJB Exception: ; nested exception is:" + 
         		"javax.persistence.PersistenceException: Exception [EclipseLink-4002] (Eclipse Persistence Services - 2.5.2.v20140319-9ad6abd): org.eclipse.persistence.exceptions.DatabaseException" +
@@ -109,14 +110,15 @@ public class OSBEndPointIntegrationTest {
         	         "</serviceReply>" +
         	      "</ns3:documentArrivedResponse>");
         
-        Map<String, String> namespaces = Collections.singletonMap("ns3",
-                "http://webservice.flhk.com/DocumentServices/1.0");
+        Map<String, String> namespaces = new HashMap<String, String>();
+        namespaces.put("ns3", "http://webservice.flhk.com/DocumentServices/1.0");
+        namespaces.put("svc", "http://webservice.flhk.com/Service/1.0");
 
         mockClient
                 .sendRequest(withPayload(requestPayload))
                 .andExpect(noFault())
                 .andExpect(ResponseMatchers
-                        .xpath("/ns3:documentArrivedResponse/serviceReply/serviceReplyStatus",
+                        .xpath("/ns3:documentArrivedResponse/svc:serviceReplyStatus",
                                 namespaces)
                         .exists());//.andExpect(payload(responsePayload));
     }
