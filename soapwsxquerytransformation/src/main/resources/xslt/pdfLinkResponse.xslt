@@ -27,10 +27,12 @@ xmlns:svc="http://webservice.flhk.com/Service/1.0">
   
   <xsl:template match="document:documentArrivedResponse">
     <xsl:element name="{name()}" namespace="http://webservice.flhk.com/DocumentServices/1.0">
-		<serviceReply xmlns="http://webservice.flhk.com/Service/1.0">
-			<serviceReplyStatus><xsl:value-of select = "serviceReply/serviceReplyStatus"/></serviceReplyStatus>
-			<message><xsl:value-of select = "serviceReply/message"/></message>
-		</serviceReply>
+    	<xsl:element name="serviceReplyStatus" namespace="http://webservice.flhk.com/Service/1.0">
+    		<xsl:value-of select = "serviceReply/serviceReplyStatus"/>
+    	</xsl:element>
+    	<xsl:element name="message" namespace="http://webservice.flhk.com/Service/1.0">
+    		<xsl:value-of select = "serviceReply/message"/>
+    	</xsl:element>
     </xsl:element>
   </xsl:template>  
   
