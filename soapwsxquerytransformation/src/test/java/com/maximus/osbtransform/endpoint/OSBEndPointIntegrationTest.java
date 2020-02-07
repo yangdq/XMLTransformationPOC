@@ -167,4 +167,35 @@ public class OSBEndPointIntegrationTest {
                                 namespaces).evaluatesTo("8200000053")//.exists()
                         );//.andExpect(payload(responsePayload));
     }
+    
+    @Test
+    public void sendEmailOsbRequest_Success() throws IOException {
+        Source requestPayload = new StringSource(
+                "      <ns:SendEmail xmlns:ns=\"http://services.vida.psi.com/email/1.0\">" + 
+                "         <ns:email>\n" + 
+                "            <ns:to>52243@maximus.com</ns:to>\n" + 
+                "            <ns:cc></ns:cc>\n" + 
+                "            <ns:bcc></ns:bcc>\n" + 
+                "            <ns:subject>OSB Replacement Prototype Email Service</ns:subject>\n" + 
+                "            <ns:content>Test the faunction to send email</ns:content>\n" + 
+                "            <ns:contentType>text/html</ns:contentType>\n" + 
+                "         </ns:email>\n" + 
+                "      </ns:SendEmail>");
+
+        Source sampleResponsePayload = new StringSource(
+        	      "      <ns2:serviceReply xmlns:ns2=\"http://webservice.flhk.com/Service/1.0\">\n" + 
+        	      "         <ns2:reply>SUCCESS</ns2:reply>\n" + 
+        	      "         <ns2:message>Email Delivered</ns2:message>\n" + 
+        	      "      </ns2:serviceReply>");
+        
+        Map<String, String> namespaces = new HashMap<String, String>();
+        namespaces.put("svc", "http://webservice.flhk.com/Service/1.0");
+
+        mockClient
+                .sendRequest(withPayload(requestPayload))
+                .andExpect(noFault())
+                .andExpect(ResponseMatchers
+                        .xpath("/svc:serviceReply/svc:reply",
+                                namespaces).evaluatesTo("SUCCESS"));//.andExpect(payload(responsePayload));
+    }
 }
