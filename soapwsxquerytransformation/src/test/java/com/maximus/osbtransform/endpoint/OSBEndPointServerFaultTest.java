@@ -31,7 +31,7 @@ import org.springframework.xml.transform.StringSource;
 properties = { "vida.letterWSServiceEndpoint=http://localhost:7001/notavailable",
 		"vida.loggerWSServiceEndpoint=http://localhost:7001/notavailable",
 		"vida.documentWSServiceEndpoint=http://localhost:7001/notavailable"})
-public class OSBEndPointFaultTest {
+public class OSBEndPointServerFaultTest {
     @Autowired
     private ApplicationContext applicationContext;
 
@@ -67,30 +67,5 @@ public class OSBEndPointFaultTest {
                 .andExpect(ResponseMatchers
                         .xpath("/SOAP-ENV:Fault/faultstring",namespaces).exists());
     }
-    
-    @Test
-    public void processInsertLetterPdfLinksRequest_ClientFault() throws IOException {
-        Source requestPayload = new StringSource(
-                "<ns:insertLetterPDFLinks xmlns:ns=\"http://webservice.flhk.com/FLHKWebService/1.0\">" +
-                "<transactionId2222>10000000000000004</transactionId2222>" + 
-                "<fileName>406.pdf</fileName>" +
-                "<filePath>https://imgpd0.corp.psi/DOCUMENT/2013/12/28/8467764.pdf</filePath>" +
-                "</ns:insertLetterPDFLinks>");
 
-        Source sampleResponsePayload = new StringSource(
-        	      "     <SOAP-ENV:Fault xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">" + 
-        	      "         <faultcode>SOAP-ENV:Client</faultcode>" + 
-        	      "         <faultstring xml:lang=\"en\">Validation error</faultstring>\n" + 
-        	      "      </SOAP-ENV:Fault>");
-        
-        Map<String, String> namespaces = Collections.singletonMap("SOAP-ENV",
-                "http://schemas.xmlsoap.org/soap/envelope/");
-
-        mockClient
-                .sendRequest(withPayload(requestPayload))
-                .andExpect(clientOrSenderFault())
-                .andExpect(ResponseMatchers
-                        .xpath("/SOAP-ENV:Fault/faultstring",namespaces).exists());
-    }
-   
 }
