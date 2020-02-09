@@ -1,4 +1,4 @@
-package com.maximus.osbtransform.interceptor;
+package com.maximus.osbtransform.interceptor.common;
 
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.endpoint.interceptor.PayloadTransformingInterceptor;

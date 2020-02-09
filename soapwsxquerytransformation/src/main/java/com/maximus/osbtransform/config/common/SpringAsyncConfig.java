@@ -1,4 +1,4 @@
-package com.maximus.osbtransform.config;
+package com.maximus.osbtransform.config.common;
 
 import java.util.concurrent.Executor;
 

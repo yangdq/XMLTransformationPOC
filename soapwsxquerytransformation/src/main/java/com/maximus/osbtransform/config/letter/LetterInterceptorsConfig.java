@@ -1,81 +1,29 @@
-package com.maximus.osbtransform.config;
+package com.maximus.osbtransform.config.letter;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
-import org.springframework.web.filter.CommonsRequestLoggingFilter;
 import org.springframework.ws.config.annotation.EnableWs;
-import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.server.SmartEndpointInterceptor;
 import org.springframework.ws.soap.server.endpoint.interceptor.PayloadRootSmartSoapEndpointInterceptor;
 import org.springframework.xml.xsd.SimpleXsdSchema;
 import org.springframework.xml.xsd.XsdSchema;
 
-import com.maximus.osbtransform.interceptor.InsertPDFLinkLoggingInterceptor;
-import com.maximus.osbtransform.interceptor.VidaTransformationInterceptor;
-import com.maximus.osbtransform.interceptor.VidaValidationInterceptor;
-import com.maximus.osbtransform.service.async.AsyncService;
+import com.maximus.osbtransform.config.common.InterceptorsConfig;
+import com.maximus.osbtransform.interceptor.LetterLoggingInterceptor;
+import com.maximus.osbtransform.interceptor.common.VidaTransformationInterceptor;
+import com.maximus.osbtransform.interceptor.common.VidaValidationInterceptor;
 
 @EnableWs
 @Configuration
-public class InterceptorsConfig extends WsConfigurerAdapter {
+public class LetterInterceptorsConfig extends InterceptorsConfig {
 	
-    @Value("${xslt.request}")
-    private String xsltRequestFile;
-    
-    @Value("${xslt.response}")
-    private String xsltResponseFile;
-    
-	@Autowired
-	AsyncService asyncService;	
-    
-    private static final String SCHEMA_LOCATION = "wsdl/schemas/";
-	
-//	  @Override
-//	  public void addInterceptors(List<EndpointInterceptor> interceptors) {
-////	    PayloadValidatingInterceptor validatingInterceptor = new PayloadValidatingInterceptor();
-////	    validatingInterceptor.setValidateRequest(true);
-////	    validatingInterceptor.setValidateResponse(true);
-////	    validatingInterceptor.setXsdSchema(resourceSchema());
-////	    interceptors.add(validatingInterceptor);
-//		VidaTransformationInterceptor payloadTransInterceptor = new VidaTransformationInterceptor();
-//		//PayloadTransformingInterceptor payloadTransInterceptor = new PayloadTransformingInterceptor();
-//		Resource requestXslt = new ClassPathResource(xsltRequestFile);
-//		payloadTransInterceptor.setRequestXslt(requestXslt);
-//		Resource responseXslt = new ClassPathResource(xsltResponseFile);
-//		payloadTransInterceptor.setResponseXslt(responseXslt);
-//		try{
-//			payloadTransInterceptor.afterPropertiesSet();
-//		}catch(Exception e) {
-//			throw new RuntimeException(e.getMessage());
-//		}
-//		interceptors.add(new PayloadRootSmartSoapEndpointInterceptor(
-//				payloadTransInterceptor,
-//				"http://webservice.flhk.com/FLHKWebService/1.0", "insertLetterPDFLinks2"));
-//	  }
-	  
-    /**
-     * Generic Payload Logging Filter.
-     * @return CommonsRequestLoggingFilter
-     */
 	  @Bean
-	  public CommonsRequestLoggingFilter requestLoggingFilter() {
-	      CommonsRequestLoggingFilter loggingFilter = new CommonsRequestLoggingFilter();
-	      loggingFilter.setIncludeClientInfo(true);
-	      loggingFilter.setIncludeQueryString(true);
-	      loggingFilter.setIncludePayload(true);
-	      loggingFilter.setMaxPayloadLength(64000);
-	      return loggingFilter;
-	  }
-	  
-	  @Bean
-	  @Order(1)
+	  @Order(1)  // Order does not really work.  But the bean definition order does work
 	  public SmartEndpointInterceptor insertLetterPDFLinksLoggingInterceptor() {
-		  InsertPDFLinkLoggingInterceptor loggingInterceptor = new InsertPDFLinkLoggingInterceptor();
+		  LetterLoggingInterceptor loggingInterceptor = new LetterLoggingInterceptor();
 		  loggingInterceptor.setAsyncService(asyncService);
 		  
 			return new PayloadRootSmartSoapEndpointInterceptor(loggingInterceptor,
@@ -120,48 +68,9 @@ public class InterceptorsConfig extends WsConfigurerAdapter {
 					"insertLetterPDFLinks");
 	  }
 	  
-	  @Bean
+
 	  public XsdSchema insertLetterPOFLinksSchema() {
 	    return new SimpleXsdSchema(new ClassPathResource(SCHEMA_LOCATION + "LetterManagerWSSchema.xsd"));
 	  }
 	  
- 
-	  
-	  @Bean
-	  @Order(100)
-	  public SmartEndpointInterceptor addVidaDocumentServiceInterceptor() {
-			VidaTransformationInterceptor payloadGenericTransInterceptor = new VidaTransformationInterceptor();
-			//PayloadTransformingInterceptor payloadTransInterceptor = new PayloadTransformingInterceptor();
-			Resource requestXslt = new ClassPathResource("xslt/" + xsltRequestFile);
-			payloadGenericTransInterceptor.setRequestXslt(requestXslt);
-			Resource responseXslt = new ClassPathResource("xslt/" + xsltResponseFile);
-			payloadGenericTransInterceptor.setResponseXslt(responseXslt);
-			try{
-				payloadGenericTransInterceptor.afterPropertiesSet();
-			}catch(Exception e) {
-				throw new RuntimeException(e.getMessage());
-			}
-			return new PayloadRootSmartSoapEndpointInterceptor(payloadGenericTransInterceptor,
-					"http://webservice.flhk.com/DocumentServices/1.0", 
-					"documentArrivedRequest");
-	  }
-	  
-	  @Bean
-	  @Order(100)
-	  public SmartEndpointInterceptor addVidaAccountSearchInterceptor() {
-			VidaTransformationInterceptor payloadGenericTransInterceptor = new VidaTransformationInterceptor();
-			//PayloadTransformingInterceptor payloadTransInterceptor = new PayloadTransformingInterceptor();
-			Resource requestXslt = new ClassPathResource("xslt/" + xsltRequestFile);
-			payloadGenericTransInterceptor.setRequestXslt(requestXslt);
-			Resource responseXslt = new ClassPathResource("xslt/" + xsltResponseFile);
-			payloadGenericTransInterceptor.setResponseXslt(responseXslt);
-			try{
-				payloadGenericTransInterceptor.afterPropertiesSet();
-			}catch(Exception e) {
-				throw new RuntimeException(e.getMessage());
-			}
-			return new PayloadRootSmartSoapEndpointInterceptor(payloadGenericTransInterceptor,
-					"http://webservice.flhk.com/DocumentServices/1.0", 
-					"accountSearchRequest");
-	  }
 }

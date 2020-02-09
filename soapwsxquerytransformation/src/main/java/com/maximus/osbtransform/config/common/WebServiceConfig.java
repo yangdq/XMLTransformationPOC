@@ -1,4 +1,4 @@
-package com.maximus.osbtransform.config;
+package com.maximus.osbtransform.config.common;
 
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.PropertyException;
@@ -6,43 +6,28 @@ import javax.xml.bind.PropertyException;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
-import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
-import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 
 import com.maximus.osbtransform.soapclient.SOAPConnector;
 
-@EnableWs
-@Configuration
-public class WebServiceConfig extends WsConfigurerAdapter {
+//@EnableWs
+//@Configuration
+public abstract class WebServiceConfig extends WsConfigurerAdapter {
+	
+	protected String ENDPOINT_URI;
+	protected String[] JAXB_CONTEXTS;
 		
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Bean
 	public ServletRegistrationBean messageDispatcherServlet(ApplicationContext context) {
 		MessageDispatcherServlet messageDispatcherServlet = new MessageDispatcherServlet();
 		messageDispatcherServlet.setApplicationContext(context);
 		messageDispatcherServlet.setTransformWsdlLocations(true);
-		return new ServletRegistrationBean(messageDispatcherServlet, "/osbws/*");
+		return new ServletRegistrationBean(messageDispatcherServlet, "/" + ENDPOINT_URI + "/*");
 	}
 	
-	@Bean(name = "osbletterservice")
-	public SimpleWsdl11Definition osblettermanagerws() {
-		return new SimpleWsdl11Definition(new ClassPathResource("/wsdl/osblettermanagerws.wsdl"));
-	}
-	
-	@Bean(name = "osbdocumentservice")
-	public SimpleWsdl11Definition osbdocumentservicews() {
-		return new SimpleWsdl11Definition(new ClassPathResource("/wsdl/osbdocumentservices.wsdl"));
-	}
-	
-	@Bean(name = "osbemailservice")
-	public SimpleWsdl11Definition osbemailservicews() {
-		return new SimpleWsdl11Definition(new ClassPathResource("/wsdl/emailWebService.wsdl"));
-	}
-
 	/*
 	 * @Bean(name = "osbletterservice") public DefaultWsdl11Definition
 	 * defaultWsdl11Definition(XsdSchema transformSchema) { DefaultWsdl11Definition
@@ -77,7 +62,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
 	}
 	
 	@Bean 
-	Marshaller jaxbMarshaller(Jaxb2Marshaller marshaller) {
+	public Marshaller jaxbMarshaller(Jaxb2Marshaller marshaller) {
 		Marshaller mar = marshaller.createMarshaller();
 		try {
 			mar.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);

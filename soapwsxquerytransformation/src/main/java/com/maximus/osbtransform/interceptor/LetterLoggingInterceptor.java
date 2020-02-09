@@ -1,7 +1,5 @@
 package com.maximus.osbtransform.interceptor;
 
-import javax.xml.transform.Source;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.context.MessageContext;
 import org.springframework.ws.server.EndpointInterceptor;
@@ -15,7 +13,7 @@ import com.psi.vida.logging.ws.services.WsAuditStatusEnum;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class InsertPDFLinkLoggingInterceptor implements EndpointInterceptor
+public class LetterLoggingInterceptor implements EndpointInterceptor
 {
 	public static final String TRANSACTION_ID = "transactionId";
 	
