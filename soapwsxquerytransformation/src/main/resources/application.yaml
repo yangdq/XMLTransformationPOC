@@ -13,7 +13,7 @@ email:
   port:  25
   fromAddress:  OSB@Policy-Studies.com
   replyToAddress:  doNotReply@Policy-Studies.com
-  toAddress:  FL-SCHIPDevTeam@Policy-Studies.com
+  toAddress:  52243@maximus.com
   
 ---
 spring:  profiles: development
@@ -27,6 +27,7 @@ vida:
   loggerWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/commonServices/VidaWSLoggerWS        
   documentWSServiceEndpoint: http://flcsvc01qf3.corp.psi:5001/inboundDocManagement/InboundDocManagerWS
   clientManagWSServiceEndPoint: http://flcsvc01qf3.corp.psi:5001/accountManagement/ClientManagementWS
+  atmAccountTransferEndPoint:  http://flcatmtc01qf3.corp.psi:8080/flAtm/service/fhkAccountTransfer
   
 ---
 spring:
@@ -41,4 +42,5 @@ vida:
   letterWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/LettersManagement/LetterManagerWSService   
   loggerWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/commonServices/VidaWSLoggerWS   
   documentWSServiceEndpoint: http://flcsvc01qf3.corp.psi:900/inboundDocManagement/InboundDocManagerWS
-  clientManagWSServiceEndPoint: http://flcsvc01qf3.corp.psi:900/accountManagement/ClientManagementWS        
+  clientManagWSServiceEndPoint: http://flcsvc01qf3.corp.psi:900/accountManagement/ClientManagementWS
+  atmAccountTransferEndPoint:  http://flcatmtc01qf3.corp.psi:8080/flAtm/service/fhkAccountTransfer        
