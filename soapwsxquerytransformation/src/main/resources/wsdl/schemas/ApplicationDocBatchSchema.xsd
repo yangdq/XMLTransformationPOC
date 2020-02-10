@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 sp1 (x64) (http://www.altova.com) by XMLSpy 2013 Professional Ed., Installed for 2 users (with SMP from 2012-12-20 to 2013-12-21) (MAXIMUS) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:flhkws="http://webservice.flhk.com/FLHKWebService/1.0" xmlns:ns0="http://webservice.flhk.com/DocumentBatch/1.0" targetNamespace="http://webservice.flhk.com/DocumentBatch/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="http://webservice.flhk.com/FLHKWebService/1.0" schemaLocation="./FLHKWebServiceSchema.xsd"/>
+	<xs:element name="documentBatch">
+		<xs:annotation>
+			<xs:documentation>A batch of renewal or new application documents.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="applicationDocument" type="ns0:applicationDocument"/>
+				<xs:element name="renewalDocument" type="ns0:renewalDocument"/>
+			</xs:choice>
+			<xs:attribute name="batchId" type="ns0:batchIdentifier" use="required"/>
+			<xs:attribute name="batchCreationTimestamp" type="xs:dateTime" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="docValidator">
+		<xs:choice minOccurs="1" maxOccurs="1">
+			<xs:element name="applicationDocument" type="ns0:applicationDocument"/>
+			<xs:element name="renewalDocument" type="ns0:renewalDocument"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="document">
+		<xs:sequence>
+			<xs:element name="type" type="ns0:documentType">
+				<xs:annotation>
+					<xs:documentation>Document type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="dcn" type="ns0:identifier">
+				<xs:annotation>
+					<xs:documentation>Document control number - the id of the image.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="applicationDocument">
+		<xs:complexContent>
+			<xs:extension base="ns0:document">
+				<xs:sequence>
+					<xs:element name="application" type="ns0:dataEntryApplication">
+						<xs:annotation>
+							<xs:documentation>Applicaiton data.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="renewalDocument">
+		<xs:complexContent>
+			<xs:extension base="ns0:document">
+				<xs:sequence>
+					<xs:element name="renewal" type="ns0:dataEntryRenewal">
+						<xs:annotation>
+							<xs:documentation>The renewal information.</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="dataEntryApplication">
+		<xs:complexContent>
+			<xs:extension base="flhkws:application">
+				<xs:sequence>
+					<xs:element name="dataEnteredTimestamp" type="xs:dateTime" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="dataEntryRenewal">
+		<xs:complexContent>
+			<xs:extension base="flhkws:application">
+				<xs:sequence>
+					<xs:element name="dataEnteredTimestamp" type="xs:dateTime" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="documentType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NEW_APPLICATION"/>
+			<xs:enumeration value="F24_RENEWAL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="identifier">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="24"/>
+			<xs:minLength value="1"/>
+		</xs:restriction>
+	</xs:simpleType>
+    <xs:simpleType name="batchIdentifier">
+    <xs:restriction base="xs:string">
+      <xs:length value="32"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

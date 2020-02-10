@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+  xmlns:tns="http://webservice.flhk.com/DataEntryDailyBatchWS/1.0" 
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:dedb="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0" 
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  name="DataEntryDailyBatchWS" targetNamespace="http://webservice.flhk.com/DataEntryDailyBatchWS/1.0">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://webservice.flhk.com/DataEntryDailyBatchWS/1.0">
+      <xsd:import namespace="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0" schemaLocation="../../schemas/DataEntryDailyBatchSchema.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ViewDataEntryDailyBatchRequest">
+    <wsdl:part element="dedb:viewDataEntryDailyBatchRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ViewDataEntryDailyBatchResponse">
+    <wsdl:part element="dedb:viewDataEntryDailyBatchResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="DataEntryDailyBatchWS">
+    <wsdl:operation name="ViewDataEntryDailyBatch">
+      <wsdl:input message="tns:ViewDataEntryDailyBatchRequest"/>
+      <wsdl:output message="tns:ViewDataEntryDailyBatchResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataEntryDailyBatchWSSOAP" type="tns:DataEntryDailyBatchWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ViewDataEntryDailyBatch">
+      <soap:operation soapAction="http://webservice.flhk.com/DataEntryDailyBatchWS/1.0/ViewDataEntryDailyBatch"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataEntryDailyBatchWS">
+    <wsdl:port binding="tns:DataEntryDailyBatchWSSOAP" name="DataEntryDailyBatchWSSOAP">
+      <soap:address location="http://localhost:8080/FLHKServices/DocumentService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

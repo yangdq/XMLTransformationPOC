@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:batch="http://webservice.flhk.com/DocumentBatch/1.0"
+  xmlns:tns="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0" xmlns:idoc="http://services.vida.psi.com/InboundDocument/1.0"
+  targetNamespace="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0" elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+  <xs:import namespace="http://webservice.flhk.com/DocumentBatch/1.0" schemaLocation="ApplicationDocBatchSchema.xsd" />
+  <xs:import namespace="http://services.vida.psi.com/InboundDocument/1.0" schemaLocation="InboundDocSchema.xsd" />
+
+  <xs:element name="viewDataEntryDailyBatchRequest" type="tns:viewDataEntryDailyBatchRequest" />
+  <xs:complexType name="viewDataEntryDailyBatchRequest">
+    <xs:annotation>
+      <xs:documentation>Returns a daily batch of renewal or new application documents that need to be data entered.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="docType" type="tns:docType" minOccurs="1" maxOccurs="1" />
+      <xs:element name="onDate" type="xs:date" minOccurs="0" maxOccurs="1" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="docType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="APPLICATION"/>
+      <xs:enumeration value="RENEWAL"/>
+    </xs:restriction>
+  </xs:simpleType>
+  
+  <xs:element name="viewDataEntryDailyBatchResponse" type="tns:viewDataEntryDailyBatchResponse" />
+  <xs:complexType name ="viewDataEntryDailyBatchResponse">
+    <xs:annotation>
+      <xs:documentation>A daily batch of renewal or new application documents that need to be data entered.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element ref="batch:documentBatch" />
+      <xs:element ref="tns:documentLocations" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="documentLocations">
+    <xs:annotation>
+      <xs:documentation>A batch of renewal or new application document locations.</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="docLocation" type="tns:docLocation" minOccurs="0" maxOccurs="unbounded" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="docLocation">
+    <xs:annotation>
+      <xs:documentation>Specifies location of the document's binary.</xs:documentation>
+    </xs:annotation>
+    <xs:attribute name="dcn" type="batch:identifier" use="required" />
+    <xs:attribute name="fielLocation" type="xs:string" use="required" />
+  </xs:complexType>
+</xs:schema>
