@@ -1,5 +1,9 @@
 <xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform' xmlns:ns="http://webservice.flhk.com/FLHKWebService/1.0" 
-xmlns:document="http://webservice.flhk.com/DocumentServices/1.0" xmlns:client="http://services.vida.psi.com/ClientManagement/1.0"> 
+xmlns:document="http://webservice.flhk.com/DocumentServices/1.0"
+xmlns:vidadoc="http://services.vida.psi.com/DocumentServices/1.0"
+xmlns:client="http://services.vida.psi.com/ClientManagement/1.0"
+xmlns:dedb="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0"
+xmlns:xs="http://www.w3.org/2001/XMLSchema"> 
     <xsl:output encoding='UTF-8' indent='yes' method='xml'/>
 
     <!-- copy everything into the output -->
@@ -80,6 +84,18 @@ xmlns:document="http://webservice.flhk.com/DocumentServices/1.0" xmlns:client="h
             <webConfirmationId><xsl:value-of select = "searchCriteria/webConfirmationId"/></webConfirmationId>
             <zipCode><xsl:value-of select = "searchCriteria/zipCode"/></zipCode>	    
 	    </searchCriteria> 
+    </xsl:element>
+  </xsl:template>
+  
+  <xsl:template match="dedb:viewDataEntryDailyBatchRequest">
+    <xsl:variable name="batchOnDate" as="xs:date" select="dedb:onDate"/>
+    <xsl:element name="searchDataEntryDocuments" namespace="http://services.vida.psi.com/DocumentServices/1.0">
+	    <selectApplications>True</selectApplications>
+	    <createdOn>
+	      <day><xsl:value-of select="day-from-date($batchOnDate)"/></day>
+	      <month><xsl:value-of select="month-from-date($batchOnDate)"/></month>
+	      <year><xsl:value-of select="year-from-date($batchOnDate)"/></year>	    
+	    </createdOn>
     </xsl:element>
   </xsl:template>
    

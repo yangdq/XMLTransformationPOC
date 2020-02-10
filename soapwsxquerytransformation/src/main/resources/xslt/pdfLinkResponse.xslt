@@ -1,5 +1,7 @@
 <xsl:stylesheet version='2.0' xmlns:xsl='http://www.w3.org/1999/XSL/Transform' 
 xmlns:document="http://services.vida.psi.com/DocumentServices/1.0"
+xmlns:docbatch="http://webservice.flhk.com/DocumentBatch/1.0"
+xmlns:dedb="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0"
 xmlns:ns3="http://services.vida.psi.com/LetterManagement/1.0" 
 xmlns:tns="http://services.vida.psi.com/ClientManagement/1.0"
 xmlns:svc="http://webservice.flhk.com/Service/1.0"> 
@@ -58,6 +60,21 @@ xmlns:svc="http://webservice.flhk.com/Service/1.0">
 	    </xsl:for-each-group> 
     </xsl:element>
   </xsl:template>  
+  
+  <xsl:template match="document:searchDataEntryDocumentsResponse">
+    <xsl:element name="viewDataEntryDailyBatchResponse" namespace="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0">
+    	<xsl:element name="documentBatch" namespace="http://webservice.flhk.com/DocumentBatch/1.0">
+	    	<xsl:attribute name="batchId">12345678123456781234567812345678</xsl:attribute>
+	    	<xsl:attribute name="batchCreationTimestamp">2020-02-03T10:00:00</xsl:attribute>    	
+	    </xsl:element>
+	    <xsl:element name="documentLocations"  namespace="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0">
+	    	<xsl:element name="docLocation" namespace="http://webservice.flhk.com/DataEntryDailyBatchSchema/1.0">
+	    		<xsl:attribute name="dcn">dataEntryDoc/dcn</xsl:attribute>
+	    		<xsl:attribute name="fielLocation">dataEntryDoc/url</xsl:attribute>
+	    	</xsl:element>
+	    </xsl:element>
+    </xsl:element>
+  </xsl:template>
   
   <xsl:template match="ns3:insertLetterPDFLinksResponse">
     <xsl:element name="{name()}" namespace="http://webservice.flhk.com/FLHKWebService/1.0">
